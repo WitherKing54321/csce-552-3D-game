@@ -1,0 +1,3 @@
+git lfs install
+
+MAKE SURE YOU USE THIS, IMPORTANT FOR 3D ASSETS
