@@ -23,7 +23,10 @@ This is a 3D game project made in Godot 4.
 \- `.import` and `.godot` folders are ignored.
 
 '@ | Out-File -Encoding UTF8 README.md
+<<<<<<< HEAD
 
 
 
 <img width="1441" height="307" alt="image" src="https://github.com/user-attachments/assets/369fb177-2141-4c35-97ec-f2c52a73cf85" />
+=======
+>>>>>>> 444f28d (feat: ground + player + camera)
