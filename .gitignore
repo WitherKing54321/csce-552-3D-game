@@ -1,0 +1,22 @@
+@'
+# Godot project
+.export/
+export/
+
+# Godot internals (recreated on import)
+.import/
+.godot/
+
+# IDE/editor
+.idea/
+.vscode/
+
+# Logs & temp
+*.tmp
+*.temp
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+'@ | Out-File -Encoding UTF8 .gitignore
