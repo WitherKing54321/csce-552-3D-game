@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://do44874nhjlmi"]
+
+[ext_resource type="Script" uid="uid://c6ap6d8i0efkb" path="res://items/swords/first_sword.gd" id="1_mjyw6"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_jd7sf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecx3k"]
+albedo_color = Color(0.759395, 0.759395, 0.759395, 1)
+metallic_specular = 0.0
+metallic_texture = SubResource("AnimatedTexture_jd7sf")
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 16.7
+rim = 0.0
+refraction_enabled = true
+refraction_scale = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_euhcb"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jd7sf"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mjyw6"]
+size = Vector3(0.1, 0.2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epxor"]
+albedo_color = Color(0.192812, 0.192812, 0.192812, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5jy2h"]
+size = Vector3(0.1, 0.1, 0.2)
+
+[node name="FirstSword" type="Node3D"]
+script = ExtResource("1_mjyw6")
+
+[node name="Blade" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.696918)
+material_override = SubResource("StandardMaterial3D_ecx3k")
+mesh = SubResource("BoxMesh_euhcb")
+skeleton = NodePath("")
+
+[node name="Guard" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.156307)
+material_override = SubResource("StandardMaterial3D_jd7sf")
+mesh = SubResource("BoxMesh_mjyw6")
+skeleton = NodePath("")
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00657302)
+material_override = SubResource("StandardMaterial3D_epxor")
+mesh = SubResource("BoxMesh_5jy2h")
+skeleton = NodePath("")
