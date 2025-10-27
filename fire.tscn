@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://sqe3imt0t1hg"]
+
+[sub_resource type="Curve" id="Curve_ufe0f"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.332627, 1), 0.0, 0.0, 0, 0, Vector2(0.675847, 0.600965), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2pqqt"]
+curve = SubResource("Curve_ufe0f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ltu8"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.1
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 4, 0)
+scale_curve = SubResource("CurveTexture_2pqqt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6ecg"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 0.411765, 0, 1)
+emission_energy_multiplier = 7.55
+
+[sub_resource type="QuadMesh" id="QuadMesh_icfi2"]
+material = SubResource("StandardMaterial3D_x6ecg")
+size = Vector2(0.6, 0.6)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x6ecg"]
+particle_flag_rotate_y = true
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 4, 0)
+scale_curve = SubResource("CurveTexture_2pqqt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_icfi2"]
+particle_flag_rotate_y = true
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 4, 0)
+scale_curve = SubResource("CurveTexture_2pqqt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eo6dx"]
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 4, 0)
+scale_curve = SubResource("CurveTexture_2pqqt")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ufe0f"]
+material = SubResource("StandardMaterial3D_x6ecg")
+size = Vector2(0.2, 0.3)
+
+[node name="Fire" type="Node3D"]
+
+[node name="Flame" type="GPUParticles3D" parent="."]
+amount = 32
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_5ltu8")
+draw_pass_1 = SubResource("QuadMesh_icfi2")
+
+[node name="Flame2" type="GPUParticles3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+amount = 32
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_x6ecg")
+draw_pass_1 = SubResource("QuadMesh_icfi2")
+
+[node name="Flame3" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+amount = 32
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_icfi2")
+draw_pass_1 = SubResource("QuadMesh_icfi2")
+
+[node name="FlameSpark" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+amount = 16
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_eo6dx")
+draw_pass_1 = SubResource("QuadMesh_ufe0f")

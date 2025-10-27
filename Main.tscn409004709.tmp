@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=22 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://shopkeep.gd" id="2_uu6xs"]
-[ext_resource type="Script" uid="uid://wr6lipgv8ubd" path="res://pause_menu.gd" id="4_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://sqe3imt0t1hg" path="res://fire.tscn" id="4_fos0i"]
+[ext_resource type="PackedScene" uid="uid://c012umf0vhnrc" path="res://PauseMenu.tscn" id="3_r0du0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
 albedo_color = Color(0, 0.380392, 0.12549, 1)
@@ -166,55 +165,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Shopkeep"]
 
-[node name="PauseMenuLayer" type="CanvasLayer" parent="."]
-script = ExtResource("4_cm0pq")
+[node name="PauseMenuLayer" parent="." instance=ExtResource("3_r0du0")]
 
-[node name="PauseMenu" type="Control" parent="PauseMenuLayer"]
+[node name="PauseMenu2" type="Control" parent="PauseMenuLayer"]
 process_mode = 2
 layout_mode = 3
-anchor_right = 0.168
-anchor_bottom = 0.253
-offset_right = 706.464
-offset_bottom = 497.056
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 6.0
+offset_right = -14.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="PauseMenuLayer/PauseMenu"]
+[node name="ColorRect" type="ColorRect" parent="PauseMenuLayer/PauseMenu2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.414
-anchor_right = 0.5
-anchor_bottom = 0.414
-offset_left = -2382.0
-offset_top = -1657.65
-offset_right = 2077.0
-offset_bottom = 2162.35
-color = Color(0.596078, 0.596078, 0.596078, 0.564706)
+anchor_left = 0.159
+anchor_top = 0.246
+anchor_right = 0.159
+anchor_bottom = 0.246
+offset_left = -204.168
+offset_top = -170.408
+offset_right = 204.832
+offset_bottom = 170.592
+color = Color(0.596078, 0.596078, 0.596078, 0.470588)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuLayer/PauseMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuLayer/PauseMenu2"]
 layout_mode = 0
-offset_left = 1076.0
-offset_top = 412.0
-offset_right = 1519.0
-offset_bottom = 790.0
+offset_left = 129.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 149.0
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Resume" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
+[node name="Resume" type="Button" parent="PauseMenuLayer/PauseMenu2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
 text = "Resume"
 
-[node name="Restart" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
+[node name="Restart" type="Button" parent="PauseMenuLayer/PauseMenu2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
 text = "Main Menu"
 
-[node name="Quit" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
+[node name="Quit" type="Button" parent="PauseMenuLayer/PauseMenu2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
 text = "Quit"
-
-[node name="Fire" parent="." instance=ExtResource("4_fos0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.04932, 1.17795, 14.3029)
