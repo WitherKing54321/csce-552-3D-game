@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=24 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://shopkeep.gd" id="2_uu6xs"]
 [ext_resource type="Script" uid="uid://wr6lipgv8ubd" path="res://pause_menu.gd" id="4_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://sqe3imt0t1hg" path="res://fire.tscn" id="4_fos0i"]
+[ext_resource type="PackedScene" uid="uid://cynafsq73fie2" path="res://Modular_First.glb" id="5_fos0i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
 albedo_color = Color(0, 0.380392, 0.12549, 1)
@@ -15,7 +16,7 @@ size = Vector2(100, 100)
 size = Vector3(100, 0, 100)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rxg2q"]
-height = 1.8
+height = 2.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uu6xs"]
 radius = 0.3
@@ -85,7 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.478873, 0)
 script = ExtResource("1_glv2v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453624, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_rxg2q")
 
 [node name="SpringArm" type="SpringArm3D" parent="Player"]
@@ -218,3 +219,8 @@ text = "Quit"
 
 [node name="Fire" parent="." instance=ExtResource("4_fos0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.04932, 1.17795, 14.3029)
+
+[node name="CastleRoot" type="Node" parent="."]
+
+[node name="Modular_First" parent="CastleRoot" instance=ExtResource("5_fos0i")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 2, 0)
