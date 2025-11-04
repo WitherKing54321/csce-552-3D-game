@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=25 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://shopkeep.gd" id="2_uu6xs"]
 [ext_resource type="Script" uid="uid://wr6lipgv8ubd" path="res://pause_menu.gd" id="4_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://sqe3imt0t1hg" path="res://fire.tscn" id="4_fos0i"]
-[ext_resource type="PackedScene" uid="uid://cynafsq73fie2" path="res://Modular_First.glb" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://cvk08m24y4sdd" path="res://modular_first.tscn" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://d4jpukchga4n6" path="res://jail_broken_model.tscn" id="6_3dxm6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
 albedo_color = Color(0, 0.380392, 0.12549, 1)
@@ -81,8 +82,8 @@ mesh = SubResource("PlaneMesh_rxg2q")
 shape = SubResource("BoxShape3D_rxg2q")
 debug_color = Color(0, 0.839216, 0.701961, 0.419608)
 
-[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.478873, 0)
+[node name="Player" type="CharacterBody3D" parent="." groups=["player", "player_global"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8649, 2.82342, 1.09471)
 script = ExtResource("1_glv2v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -143,11 +144,11 @@ material_override = SubResource("StandardMaterial3D_fos0i")
 mesh = SubResource("CylinderMesh_uu6xs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 0, 0)
+transform = Transform3D(0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, -0.612372, 0.612373, 30.6436, 14.8404, 0)
 shadow_enabled = true
 
 [node name="Shopkeep" type="Node3D" parent="." groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.47476, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0867, 1.47476, 10)
 script = ExtResource("2_uu6xs")
 
 [node name="ShopkeepBody" type="Node3D" parent="Shopkeep"]
@@ -218,9 +219,13 @@ theme_override_font_sizes/font_size = 80
 text = "Quit"
 
 [node name="Fire" parent="." instance=ExtResource("4_fos0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.04932, 1.17795, 14.3029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2197, 8.34268, 21.6901)
 
 [node name="CastleRoot" type="Node" parent="."]
 
 [node name="Modular_First" parent="CastleRoot" instance=ExtResource("5_fos0i")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 2, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 34.0404, 2, 0)
+visible = false
+
+[node name="Jail_Broken_Model" parent="CastleRoot" instance=ExtResource("6_3dxm6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.4473, 0, 30.2369)
