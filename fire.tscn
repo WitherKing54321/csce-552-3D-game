@@ -83,3 +83,9 @@ amount = 16
 randomness = 0.4
 process_material = SubResource("ParticleProcessMaterial_eo6dx")
 draw_pass_1 = SubResource("QuadMesh_ufe0f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.884429, 0.586995, 1.15514e-06, 1)
+light_energy = 100.0
+omni_range = 50.0
+omni_attenuation = 2.0

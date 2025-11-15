@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://shopkeep.gd" id="2_uu6xs"]
-[ext_resource type="Script" uid="uid://wr6lipgv8ubd" path="res://pause_menu.gd" id="4_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://sqe3imt0t1hg" path="res://fire.tscn" id="4_fos0i"]
+[ext_resource type="PackedScene" uid="uid://pa3yiptbdyvs" path="res://complete_build.tscn" id="5_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://cvk08m24y4sdd" path="res://modular_first.tscn" id="5_fos0i"]
-[ext_resource type="PackedScene" uid="uid://d4jpukchga4n6" path="res://jail_broken_model.tscn" id="6_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://fnene5bt7rl0" path="res://pause_menu.tscn" id="5_lgr22"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
-albedo_color = Color(0, 0.380392, 0.12549, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rxg2q"]
 size = Vector2(100, 100)
@@ -17,6 +16,7 @@ size = Vector2(100, 100)
 size = Vector3(100, 0, 100)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rxg2q"]
+radius = 0.8
 height = 2.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uu6xs"]
@@ -70,6 +70,11 @@ albedo_color = Color(0.452179, 0.302943, 0, 1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uu6xs"]
 radius = 3.83545
 
+[sub_resource type="Environment" id="Environment_fos0i"]
+background_mode = 1
+ambient_light_energy = 0.1
+tonemap_exposure = 0.3
+
 [node name="Main" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
@@ -83,36 +88,43 @@ shape = SubResource("BoxShape3D_rxg2q")
 debug_color = Color(0, 0.839216, 0.701961, 0.419608)
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["player", "player_global"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8649, 2.82342, 1.09471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848015, 23.2484, 12.8581)
 script = ExtResource("1_glv2v")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41083, 0)
+light_color = Color(0.909804, 0.592157, 0, 1)
+light_energy = 4.0
+light_indirect_energy = 0.0
+distance_fade_begin = 0.0
+distance_fade_length = 30.0
+omni_range = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_rxg2q")
 
-[node name="SpringArm" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
-spring_length = 6.0
-
-[node name="Camera3D" type="Camera3D" parent="Player/SpringArm"]
-current = true
-
 [node name="Body" type="Node3D" parent="Player"]
 
 [node name="Torso" type="MeshInstance3D" parent="Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+layers = 2
 mesh = SubResource("CapsuleMesh_uu6xs")
 
 [node name="Head" type="MeshInstance3D" parent="Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+visible = false
+layers = 2
 material_override = SubResource("StandardMaterial3D_3dxm6")
 mesh = SubResource("SphereMesh_r0du0")
 
 [node name="RArmPivot" type="Node3D" parent="Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.2, 0)
+visible = false
 
 [node name="RArm" type="MeshInstance3D" parent="Player/Body/RArmPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+layers = 2
 material_override = SubResource("StandardMaterial3D_glv2v")
 mesh = SubResource("CylinderMesh_cm0pq")
 
@@ -121,34 +133,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00319827, -0.708405, 0)
 
 [node name="LArmPivot" type="Node3D" parent="Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.2, 0)
+visible = false
 
 [node name="LArm" type="MeshInstance3D" parent="Player/Body/LArmPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+layers = 2
 material_override = SubResource("StandardMaterial3D_uu6xs")
 mesh = SubResource("CylinderMesh_fos0i")
 
 [node name="RLegPivot" type="Node3D" parent="Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.35, 0)
+visible = false
 
 [node name="RLeg" type="MeshInstance3D" parent="Player/Body/RLegPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+layers = 2
 material_override = SubResource("StandardMaterial3D_cm0pq")
 mesh = SubResource("CylinderMesh_glv2v")
 
 [node name="LLegPivot" type="Node3D" parent="Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.35, 0)
+visible = false
 
 [node name="LLeg" type="MeshInstance3D" parent="Player/Body/LLegPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+layers = 2
 material_override = SubResource("StandardMaterial3D_fos0i")
 mesh = SubResource("CylinderMesh_uu6xs")
 
+[node name="PivotYaw" type="Node3D" parent="Player"]
+
+[node name="PivotPitch" type="Node3D" parent="Player/PivotYaw"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56719, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/PivotYaw/PivotPitch"]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, -0.612372, 0.612373, 30.6436, 14.8404, 0)
+visible = false
+light_color = Color(1, 0.603922, 0, 1)
+light_indirect_energy = 10.0
 shadow_enabled = true
 
 [node name="Shopkeep" type="Node3D" parent="." groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0867, 1.47476, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0867, 1.47476, -56.2794)
 script = ExtResource("2_uu6xs")
 
 [node name="ShopkeepBody" type="Node3D" parent="Shopkeep"]
@@ -168,64 +196,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Shopkeep"]
 
-[node name="PauseMenuLayer" type="CanvasLayer" parent="."]
-script = ExtResource("4_cm0pq")
-
-[node name="PauseMenu" type="Control" parent="PauseMenuLayer"]
-process_mode = 2
-layout_mode = 3
-anchor_right = 0.168
-anchor_bottom = 0.253
-offset_right = 706.464
-offset_bottom = 497.056
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenuLayer/PauseMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.414
-anchor_right = 0.5
-anchor_bottom = 0.414
-offset_left = -2382.0
-offset_top = -1657.65
-offset_right = 2077.0
-offset_bottom = 2162.35
-color = Color(0.596078, 0.596078, 0.596078, 0.564706)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuLayer/PauseMenu"]
-layout_mode = 0
-offset_left = 1076.0
-offset_top = 412.0
-offset_right = 1519.0
-offset_bottom = 790.0
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="Resume" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "Resume"
-
-[node name="Restart" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "Main Menu"
-
-[node name="Quit" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "Quit"
-
-[node name="Fire" parent="." instance=ExtResource("4_fos0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2197, 8.34268, 21.6901)
-
 [node name="CastleRoot" type="Node" parent="."]
 
 [node name="Modular_First" parent="CastleRoot" instance=ExtResource("5_fos0i")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 34.0404, 2, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 54.7108, 2, 0)
 visible = false
 
-[node name="Jail_Broken_Model" parent="CastleRoot" instance=ExtResource("6_3dxm6")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.4473, 0, 30.2369)
+[node name="Complete_Build" parent="CastleRoot" instance=ExtResource("5_3dxm6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 18.8745, 41.6309)
+
+[node name="PauseMenuLayer" parent="." instance=ExtResource("5_lgr22")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fos0i")
