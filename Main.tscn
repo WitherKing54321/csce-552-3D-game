@@ -1,10 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=32 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://shopkeep.gd" id="2_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://pa3yiptbdyvs" path="res://complete_build.tscn" id="5_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://cvk08m24y4sdd" path="res://modular_first.tscn" id="5_fos0i"]
 [ext_resource type="PackedScene" uid="uid://fnene5bt7rl0" path="res://pause_menu.tscn" id="5_lgr22"]
+[ext_resource type="Script" uid="uid://bnynnhenm4lrd" path="res://chase_trigger.gd" id="6_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://rbi56mb4ugp1" path="res://torch.tscn" id="7_lgr22"]
+[ext_resource type="Script" uid="uid://c8o2jp4whgcnt" path="res://chase_controller.gd" id="7_trn2v"]
+[ext_resource type="Script" uid="uid://cl34fj6k0gbfw" path="res://death_area.gd" id="9_03owx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
 albedo_color = Color(0, 0, 0, 1)
@@ -75,6 +79,19 @@ background_mode = 1
 ambient_light_energy = 0.1
 tonemap_exposure = 0.3
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fos0i"]
+size = Vector3(4.05325, 40.5437, 54.3808)
+
+[sub_resource type="Curve3D" id="Curve3D_3dxm6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, -80),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgr22"]
+size = Vector3(52.4987, 31.8876, 8.04089)
+
 [node name="Main" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
@@ -88,7 +105,7 @@ shape = SubResource("BoxShape3D_rxg2q")
 debug_color = Color(0, 0.839216, 0.701961, 0.419608)
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["player", "player_global"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848015, 23.2484, 12.8581)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848015, 23.2484, -79.8621)
 script = ExtResource("1_glv2v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
@@ -209,3 +226,33 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 18.8745, 41.6309)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fos0i")
+
+[node name="ChaseTrigger" type="Area3D" parent="." node_paths=PackedStringArray("chase_controller")]
+script = ExtResource("6_3dxm6")
+chase_controller = NodePath("../ChaseController")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.555, 24.1797, -78.8494)
+shape = SubResource("BoxShape3D_fos0i")
+
+[node name="ChaseController" type="Node3D" parent="." node_paths=PackedStringArray("path_follow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.686, 18.3799, -79.076)
+script = ExtResource("7_trn2v")
+path_follow = NodePath("MonsterPath/MonsterPathFollow")
+
+[node name="MonsterPath" type="Path3D" parent="ChaseController"]
+curve = SubResource("Curve3D_3dxm6")
+
+[node name="MonsterPathFollow" type="PathFollow3D" parent="ChaseController/MonsterPath"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="MonsterRoot" type="Node3D" parent="ChaseController/MonsterPath/MonsterPathFollow"]
+
+[node name="Torch" parent="ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot" instance=ExtResource("7_lgr22")]
+
+[node name="DeathArea" type="Area3D" parent="ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot"]
+script = ExtResource("9_03owx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot/DeathArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.230164, 6.83563, 0.0282593)
+shape = SubResource("BoxShape3D_lgr22")
