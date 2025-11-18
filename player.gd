@@ -87,7 +87,7 @@ var JUMP_STANDING: AudioStream = preload("res://Sounds/TestJumpStanding.wav")
 var JUMP_WALK_1: AudioStream = preload("res://Sounds/TestWalkJump.wav")
 var JUMP_WALK_2: AudioStream = preload("res://Sounds/TestJumpStanding.wav")
 
-# Sprinting jump audio variations
+# Sprinting jump audio variation
 var JUMP_SPRINT_1: AudioStream = preload("res://Sounds/TestSpringJump.wav")
 var JUMP_SPRINT_2: AudioStream = preload("res://Sounds/TestJumpStanding.wav")
 
