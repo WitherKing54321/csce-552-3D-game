@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://rbi56mb4ugp1"]
+[gd_scene load_steps=4 format=3 uid="uid://rbi56mb4ugp1"]
 
 [ext_resource type="PackedScene" uid="uid://sqe3imt0t1hg" path="res://fire.tscn" id="1_pa17o"]
+[ext_resource type="AudioStream" uid="uid://do8m0xtp152dp" path="res://Sounds/Torch.wav" id="2_s1444"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5w7kb"]
 size = Vector3(0.2, 0.8, 0.2)
@@ -13,3 +14,8 @@ mesh = SubResource("BoxMesh_5w7kb")
 
 [node name="Fire" parent="." instance=ExtResource("1_pa17o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357117, 0.252564, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_s1444")
+volume_db = -50.0
+autoplay = true
