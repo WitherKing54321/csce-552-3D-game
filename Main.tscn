@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=33 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://shopkeep.gd" id="2_uu6xs"]
+[ext_resource type="AudioStream" uid="uid://cm2afdtxl3bnh" path="res://Sounds/3D-Game_PianoMusic.wav" id="3_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://pa3yiptbdyvs" path="res://complete_build.tscn" id="5_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://cvk08m24y4sdd" path="res://modular_first.tscn" id="5_fos0i"]
 [ext_resource type="PackedScene" uid="uid://fnene5bt7rl0" path="res://pause_menu.tscn" id="5_lgr22"]
@@ -212,6 +213,8 @@ shape = SubResource("CylinderShape3D_uu6xs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Shopkeep"]
+stream = ExtResource("3_wkp8b")
+autoplay = true
 
 [node name="CastleRoot" type="Node" parent="."]
 
