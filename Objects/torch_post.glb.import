@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfyrdvhmpl1u"
-path="res://.godot/imported/Jail_Broken_Model.glb-f9813c62ee523abd4178e7a96e12bda2.scn"
+uid="uid://cmnphuahoiw82"
+path="res://.godot/imported/torch_post.glb-d8391d6eaa19caa06be3531ac6d21a0f.scn"
 
 [deps]
 
-source_file="res://Jail_Broken_Model.glb"
-dest_files=["res://.godot/imported/Jail_Broken_Model.glb-f9813c62ee523abd4178e7a96e12bda2.scn"]
+source_file="res://Objects/torch_post.glb"
+dest_files=["res://.godot/imported/torch_post.glb-d8391d6eaa19caa06be3531ac6d21a0f.scn"]
 
 [params]
 

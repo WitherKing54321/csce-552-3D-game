@@ -5,13 +5,13 @@ extends CharacterBody3D
 # ============================================================
 const SPEED: float = 7.0                  # base walk speed
 const JUMP_VELOCITY: float = 9.0
-@export var RUN_MULT: float = 1.3         # 30% faster while sprinting
+@export var RUN_MULT: float = 1.4         # 30% faster while sprinting
 
 # Crouch tuning
-const CROUCH_SCALE: float = 0.50          # visual scale while crouched
+const CROUCH_SCALE: float = 0.40          # visual scale while crouched
 const CROUCH_SPEED_MULT: float = 0.70     # speed multiplier while crouched
 const CROUCH_LERP: float = 12.0           # higher = snappier transitions
-const CAM_CROUCH_DROP: float = 0.5       # how much to lower the FP camera (meters)
+const CAM_CROUCH_DROP: float = 0.9       # how much to lower the FP camera (meters)
 const HEADROOM_MARGIN: float = 0.05       # extra space required to stand
 const CROUCH_DISABLE_SPRINT: bool = true  # don't allow sprint while crouched
 
@@ -264,3 +264,15 @@ func _has_headroom_to_stand() -> bool:
 	p.exclude = [self]
 	var hit := space.intersect_ray(p)
 	return hit.is_empty()
+
+
+func _on_retry_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_quit_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_chase_trigger_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.

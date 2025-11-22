@@ -1,14 +1,24 @@
-[gd_scene load_steps=32 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=39 format=3 uid="uid://day2xcnccv5hs"]
 
-[ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://player.gd" id="1_glv2v"]
-[ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://shopkeep.gd" id="2_uu6xs"]
-[ext_resource type="PackedScene" uid="uid://pa3yiptbdyvs" path="res://complete_build.tscn" id="5_3dxm6"]
-[ext_resource type="PackedScene" uid="uid://cvk08m24y4sdd" path="res://modular_first.tscn" id="5_fos0i"]
-[ext_resource type="PackedScene" uid="uid://fnene5bt7rl0" path="res://pause_menu.tscn" id="5_lgr22"]
-[ext_resource type="Script" uid="uid://bnynnhenm4lrd" path="res://chase_trigger.gd" id="6_3dxm6"]
-[ext_resource type="PackedScene" uid="uid://rbi56mb4ugp1" path="res://torch.tscn" id="7_lgr22"]
-[ext_resource type="Script" uid="uid://c8o2jp4whgcnt" path="res://chase_controller.gd" id="7_trn2v"]
-[ext_resource type="Script" uid="uid://cl34fj6k0gbfw" path="res://death_area.gd" id="9_03owx"]
+[ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://Characters/player.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://Characters/shopkeep.gd" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://8fau4w5624dx" path="res://Objects/complete_build.tscn" id="5_3dxm6"]
+[ext_resource type="Script" uid="uid://bn8fr2xxcjhqo" path="res://Characters/Monster/dialog_area.gd" id="5_5vvyt"]
+[ext_resource type="PackedScene" uid="uid://cvk08m24y4sdd" path="res://Objects/modular_first.tscn" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://fnene5bt7rl0" path="res://UI/pause_menu.tscn" id="5_lgr22"]
+[ext_resource type="Script" uid="uid://bnynnhenm4lrd" path="res://Characters/Monster/chase_trigger.gd" id="6_3dxm6"]
+[ext_resource type="Script" uid="uid://c8o2jp4whgcnt" path="res://Characters/Monster/chase_controller.gd" id="7_trn2v"]
+[ext_resource type="PackedScene" uid="uid://qm4ftgj2s36h" path="res://Characters/shopkeep4.glb" id="8_c6i3y"]
+[ext_resource type="Script" uid="uid://cl34fj6k0gbfw" path="res://Characters/Monster/death_area.gd" id="9_03owx"]
+[ext_resource type="PackedScene" uid="uid://case0ouywui0f" path="res://helmetwip.glb" id="9_c2ibq"]
+[ext_resource type="Script" uid="uid://dvyhamwioef37" path="res://UI/dialog_ui.gd" id="11_20pc6"]
+[ext_resource type="Script" uid="uid://blpwmc3kq8326" path="res://Characters/Monster/chase_trigger_2.gd" id="11_fpfj3"]
+[ext_resource type="Script" uid="uid://bnum43kdtofx6" path="res://Characters/Monster/chase_controller_2.gd" id="12_j4qnp"]
+
+[sub_resource type="Environment" id="Environment_fos0i"]
+background_mode = 1
+ambient_light_energy = 0.1
+tonemap_exposure = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
 albedo_color = Color(0, 0, 0, 1)
@@ -66,49 +76,78 @@ top_radius = 0.14
 bottom_radius = 0.14
 height = 0.8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgr22"]
-albedo_color = Color(0.452179, 0.302943, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_r0du0"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uu6xs"]
 radius = 3.83545
 
-[sub_resource type="Environment" id="Environment_fos0i"]
-background_mode = 1
-ambient_light_energy = 0.1
-tonemap_exposure = 0.3
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_fos0i"]
-size = Vector3(4.05325, 40.5437, 54.3808)
+size = Vector3(50.924, 30.2782, 54.3808)
 
 [sub_resource type="Curve3D" id="Curve3D_3dxm6"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, -80),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, -80),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lgr22"]
-size = Vector3(52.4987, 31.8876, 8.04089)
+size = Vector3(32.7984, 31.8876, 8.04089)
 
-[node name="Main" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2ibq"]
+size = Vector3(31, 14, 4)
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[sub_resource type="Curve3D" id="Curve3D_c6i3y"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -86, 0, 0, 0, 0, 0, 0, 0, 0, -86, 0, 90, 0, 0, 0, 0, 0, 0, 0, 0, 90),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_c6i3y"]
+size = Vector3(39, 19, 35)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vvyt"]
+bg_color = Color(0.356863, 0.356863, 0.356863, 0.521569)
+
+[node name="Main" type="Node3D" groups=["game_over_menu", "player", "player_global", "sucess_menu"]]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, -0.612372, 0.612373, 30.6436, 14.8404, 0)
+light_energy = 30.0
+light_indirect_energy = 10.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_fos0i")
+
+[node name="CastleRoot" type="Node" parent="Environment"]
+
+[node name="Modular_First" parent="Environment/CastleRoot" instance=ExtResource("5_fos0i")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 54.7108, 2, 0)
+visible = false
+
+[node name="Ground" type="StaticBody3D" parent="Environment/CastleRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -79.1972)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/CastleRoot/Ground"]
 material_override = SubResource("StandardMaterial3D_r0du0")
 mesh = SubResource("PlaneMesh_rxg2q")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CastleRoot/Ground"]
 shape = SubResource("BoxShape3D_rxg2q")
 debug_color = Color(0, 0.839216, 0.701961, 0.419608)
 
-[node name="Player" type="CharacterBody3D" parent="." groups=["player", "player_global"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848015, 23.2484, -79.8621)
+[node name="Complete_Build" parent="Environment/CastleRoot" instance=ExtResource("5_3dxm6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 17.5284, 41.5798)
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" type="CharacterBody3D" parent="Characters" groups=["player", "player_global", "sucess_menu"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.152, -62.0613, -69.124)
 script = ExtResource("1_glv2v")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Characters/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41083, 0)
 light_color = Color(0.909804, 0.592157, 0, 1)
 light_energy = 4.0
@@ -117,142 +156,254 @@ distance_fade_begin = 0.0
 distance_fade_length = 30.0
 omni_range = 20.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_rxg2q")
 
-[node name="Body" type="Node3D" parent="Player"]
+[node name="Body" type="Node3D" parent="Characters/Player"]
+visible = false
 
-[node name="Torso" type="MeshInstance3D" parent="Player/Body"]
+[node name="Torso" type="MeshInstance3D" parent="Characters/Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_uu6xs")
 
-[node name="Head" type="MeshInstance3D" parent="Player/Body"]
+[node name="Head" type="MeshInstance3D" parent="Characters/Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
 visible = false
 layers = 2
 material_override = SubResource("StandardMaterial3D_3dxm6")
 mesh = SubResource("SphereMesh_r0du0")
 
-[node name="RArmPivot" type="Node3D" parent="Player/Body"]
+[node name="RArmPivot" type="Node3D" parent="Characters/Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.2, 0)
 visible = false
 
-[node name="RArm" type="MeshInstance3D" parent="Player/Body/RArmPivot"]
+[node name="RArm" type="MeshInstance3D" parent="Characters/Player/Body/RArmPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 layers = 2
 material_override = SubResource("StandardMaterial3D_glv2v")
 mesh = SubResource("CylinderMesh_cm0pq")
 
-[node name="HandSocket" type="Node3D" parent="Player/Body/RArmPivot"]
+[node name="HandSocket" type="Node3D" parent="Characters/Player/Body/RArmPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00319827, -0.708405, 0)
 
-[node name="LArmPivot" type="Node3D" parent="Player/Body"]
+[node name="LArmPivot" type="Node3D" parent="Characters/Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.2, 0)
 visible = false
 
-[node name="LArm" type="MeshInstance3D" parent="Player/Body/LArmPivot"]
+[node name="LArm" type="MeshInstance3D" parent="Characters/Player/Body/LArmPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 layers = 2
 material_override = SubResource("StandardMaterial3D_uu6xs")
 mesh = SubResource("CylinderMesh_fos0i")
 
-[node name="RLegPivot" type="Node3D" parent="Player/Body"]
+[node name="RLegPivot" type="Node3D" parent="Characters/Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.35, 0)
 visible = false
 
-[node name="RLeg" type="MeshInstance3D" parent="Player/Body/RLegPivot"]
+[node name="RLeg" type="MeshInstance3D" parent="Characters/Player/Body/RLegPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 layers = 2
 material_override = SubResource("StandardMaterial3D_cm0pq")
 mesh = SubResource("CylinderMesh_glv2v")
 
-[node name="LLegPivot" type="Node3D" parent="Player/Body"]
+[node name="LLegPivot" type="Node3D" parent="Characters/Player/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.35, 0)
 visible = false
 
-[node name="LLeg" type="MeshInstance3D" parent="Player/Body/LLegPivot"]
+[node name="LLeg" type="MeshInstance3D" parent="Characters/Player/Body/LLegPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 layers = 2
 material_override = SubResource("StandardMaterial3D_fos0i")
 mesh = SubResource("CylinderMesh_uu6xs")
 
-[node name="PivotYaw" type="Node3D" parent="Player"]
+[node name="PivotYaw" type="Node3D" parent="Characters/Player"]
+visible = false
 
-[node name="PivotPitch" type="Node3D" parent="Player/PivotYaw"]
+[node name="PivotPitch" type="Node3D" parent="Characters/Player/PivotYaw"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56719, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player/PivotYaw/PivotPitch"]
+[node name="Camera3D" type="Camera3D" parent="Characters/Player/PivotYaw/PivotPitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.569172, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, -0.612372, 0.612373, 30.6436, 14.8404, 0)
-visible = false
-light_color = Color(1, 0.603922, 0, 1)
-light_indirect_energy = 10.0
-shadow_enabled = true
-
-[node name="Shopkeep" type="Node3D" parent="." groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0867, 1.47476, -56.2794)
+[node name="Shopkeep" type="Node3D" parent="Characters" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9133, 9.9145, -97.2794)
 script = ExtResource("2_uu6xs")
 
-[node name="ShopkeepBody" type="Node3D" parent="Shopkeep"]
+[node name="shopkeepBody" parent="Characters/Shopkeep" instance=ExtResource("8_c6i3y")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Shopkeep/ShopkeepBody"]
-material_override = SubResource("StandardMaterial3D_lgr22")
-mesh = SubResource("CapsuleMesh_r0du0")
-skeleton = NodePath("../..")
+[node name="Area3D" type="Area3D" parent="Characters/Shopkeep"]
+script = ExtResource("5_5vvyt")
 
-[node name="Area3D" type="Area3D" parent="Shopkeep"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shopkeep/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Shopkeep/Area3D"]
 shape = SubResource("CylinderShape3D_uu6xs")
 
-[node name="Label3D" type="Label3D" parent="Shopkeep"]
+[node name="Label3D" type="Label3D" parent="Characters/Shopkeep"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Shopkeep"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Characters/Shopkeep"]
 
-[node name="CastleRoot" type="Node" parent="."]
+[node name="MonsterChase1" type="Node" parent="Characters"]
 
-[node name="Modular_First" parent="CastleRoot" instance=ExtResource("5_fos0i")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 54.7108, 2, 0)
-visible = false
-
-[node name="Complete_Build" parent="CastleRoot" instance=ExtResource("5_3dxm6")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 18.8745, 41.6309)
-
-[node name="PauseMenuLayer" parent="." instance=ExtResource("5_lgr22")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_fos0i")
-
-[node name="ChaseTrigger" type="Area3D" parent="." node_paths=PackedStringArray("chase_controller")]
+[node name="ChaseTrigger" type="Area3D" parent="Characters/MonsterChase1" node_paths=PackedStringArray("chase_controller")]
 script = ExtResource("6_3dxm6")
 chase_controller = NodePath("../ChaseController")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseTrigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/MonsterChase1/ChaseTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.555, 24.1797, -78.8494)
 shape = SubResource("BoxShape3D_fos0i")
 
-[node name="ChaseController" type="Node3D" parent="." node_paths=PackedStringArray("path_follow")]
+[node name="ChaseController" type="Node3D" parent="Characters/MonsterChase1" node_paths=PackedStringArray("path_follow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.686, 18.3799, -79.076)
 script = ExtResource("7_trn2v")
 path_follow = NodePath("MonsterPath/MonsterPathFollow")
+speed = 10.0
 
-[node name="MonsterPath" type="Path3D" parent="ChaseController"]
+[node name="MonsterPath" type="Path3D" parent="Characters/MonsterChase1/ChaseController"]
 curve = SubResource("Curve3D_3dxm6")
 
-[node name="MonsterPathFollow" type="PathFollow3D" parent="ChaseController/MonsterPath"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+[node name="MonsterPathFollow" type="PathFollow3D" parent="Characters/MonsterChase1/ChaseController/MonsterPath"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 20, 0, 0)
+rotation_mode = 4
+loop = false
 
-[node name="MonsterRoot" type="Node3D" parent="ChaseController/MonsterPath/MonsterPathFollow"]
+[node name="MonsterRoot" type="Node3D" parent="Characters/MonsterChase1/ChaseController/MonsterPath/MonsterPathFollow"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="Torch" parent="ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot" instance=ExtResource("7_lgr22")]
-
-[node name="DeathArea" type="Area3D" parent="ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot"]
+[node name="DeathArea" type="Area3D" parent="Characters/MonsterChase1/ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("9_03owx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot/DeathArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.230164, 6.83563, 0.0282593)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/MonsterChase1/ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot/DeathArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.861923, 6.83563, 0.0282593)
 shape = SubResource("BoxShape3D_lgr22")
+
+[node name="MonsterChase2" type="Node" parent="Characters"]
+
+[node name="ChaseTrigger2" type="Area3D" parent="Characters/MonsterChase2" node_paths=PackedStringArray("chase_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183, -64, -50)
+script = ExtResource("11_fpfj3")
+chase_controller = NodePath("../ChaseController2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/MonsterChase2/ChaseTrigger2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 6.5, -11.5)
+shape = SubResource("BoxShape3D_c2ibq")
+
+[node name="ChaseController2" type="Node3D" parent="Characters/MonsterChase2"]
+script = ExtResource("12_j4qnp")
+
+[node name="MonsterPath" type="Path3D" parent="Characters/MonsterChase2/ChaseController2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -156.696, -62.5528, -52.5736)
+curve = SubResource("Curve3D_c6i3y")
+
+[node name="MonsterPathFollow" type="PathFollow3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+rotation_mode = 4
+
+[node name="MonsterRoot2" type="Node3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow"]
+
+[node name="DeathArea" type="Area3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+script = ExtResource("9_03owx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2/DeathArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 9, 17)
+shape = SubResource("BoxShape3D_c6i3y")
+
+[node name="helmetwip" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2" instance=ExtResource("9_c2ibq")]
+transform = Transform3D(-2.5, 0, -2.18557e-07, 0, 2.5, 0, 2.18557e-07, 0, -2.5, 0, -1.55339, 0)
+
+[node name="UI" type="Node" parent="."]
+
+[node name="PauseMenuLayer" parent="UI" instance=ExtResource("5_lgr22")]
+visible = false
+
+[node name="SuccessMenu" type="CanvasLayer" parent="UI" groups=["player", "player_global", "sucess_menu"]]
+visible = false
+
+[node name="Panel" type="Panel" parent="UI/SuccessMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/SuccessMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SuccessMenu/Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="EscapeText" type="Label" parent="UI/SuccessMenu/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "You Escaped!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Retry" type="Button" parent="UI/SuccessMenu/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+
+[node name="Quit" type="Button" parent="UI/SuccessMenu/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="Dialog" type="Node" parent="UI"]
+
+[node name="DialogUI" type="CanvasLayer" parent="UI/Dialog"]
+process_mode = 3
+visible = false
+script = ExtResource("11_20pc6")
+
+[node name="DialogPanel" type="Control" parent="UI/Dialog/DialogUI"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 3
+anchor_left = 0.025
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 71.2
+offset_top = -348.0
+offset_right = -166.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="UI/Dialog/DialogUI/DialogPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vvyt")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Dialog/DialogUI/DialogPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 81.0
+offset_right = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+
+[node name="DialogLabel" type="Label" parent="UI/Dialog/DialogUI/DialogPanel/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Text"
+autowrap_mode = 2

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://rbi56mb4ugp1"]
+
+[ext_resource type="PackedScene" uid="uid://sqe3imt0t1hg" path="res://Objects/fire.tscn" id="1_yseja"]
+[ext_resource type="PackedScene" uid="uid://cmnphuahoiw82" path="res://Objects/torch_post.glb" id="2_vo3cf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5w7kb"]
+size = Vector3(0.2, 0.8, 0.2)
+
+[node name="Torch" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, -0.0847778, -0.150879, 0)
+visible = false
+mesh = SubResource("BoxMesh_5w7kb")
+
+[node name="Fire" parent="." instance=ExtResource("1_yseja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.415617, 0.284081, -0.00303084)
+
+[node name="torch_post" parent="." instance=ExtResource("2_vo3cf")]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, -0.181158, -0.219482, 0)

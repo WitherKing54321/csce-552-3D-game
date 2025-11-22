@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bk278jkg0rotd"
-path="res://.godot/imported/Complete_Build.glb-eda3c61a97ca5ebeeb1fc572b357cdaf.scn"
+uid="uid://6hbitkqxdml0"
+path="res://.godot/imported/CAMARO.glb-2dc7d0e0a7ffcb044392cd5f66d67afa.scn"
 
 [deps]
 
-source_file="res://Complete_Build.glb"
-dest_files=["res://.godot/imported/Complete_Build.glb-eda3c61a97ca5ebeeb1fc572b357cdaf.scn"]
+source_file="res://Objects/CAMARO.glb"
+dest_files=["res://.godot/imported/CAMARO.glb-2dc7d0e0a7ffcb044392cd5f66d67afa.scn"]
 
 [params]
 
