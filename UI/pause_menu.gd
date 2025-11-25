@@ -1,10 +1,17 @@
 extends CanvasLayer
 
-@onready var dimmer: ColorRect          = $PauseMenu/ColorRect
-@onready var ui_root: VBoxContainer     = $PauseMenu/VBoxContainer
-@onready var resume_button: Button      = $PauseMenu/VBoxContainer/Resume
-@onready var main_menu_button: Button   = $PauseMenu/VBoxContainer/"Main Menu"
-@onready var quit_button: Button        = $PauseMenu/VBoxContainer/Quit
+@onready var dimmer: ColorRect        = $PauseMenu/ColorRect
+@onready var ui_root: VBoxContainer   = $PauseMenu/VBoxContainer
+@onready var resume_button: Button    = $PauseMenu/VBoxContainer/Resume
+@onready var main_menu_button: Button = $PauseMenu/VBoxContainer/"Main Menu"
+@onready var quit_button: Button      = $PauseMenu/VBoxContainer/Quit
+
+# =========================================
+# MENU NAV SOUND
+# =========================================
+var NAV_SOUND: AudioStream = preload("res://Sounds/MenuScroll.wav")
+var _nav_player: AudioStreamPlayer
+var _suppress_next_nav_sound: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -18,6 +25,18 @@ func _ready() -> void:
 	resume_button.pressed.connect(_on_resume_pressed)
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+
+	# Create nav sound player
+	_nav_player = AudioStreamPlayer.new()
+	_nav_player.stream = NAV_SOUND
+	_nav_player.autoplay = false
+	_nav_player.volume_db = -6.0
+	add_child(_nav_player)
+
+	# Play sound when moving between options (via keyboard / controller)
+	resume_button.focus_entered.connect(_on_option_focus_entered)
+	main_menu_button.focus_entered.connect(_on_option_focus_entered)
+	quit_button.focus_entered.connect(_on_option_focus_entered)
 
 
 func _input(event: InputEvent) -> void:
@@ -33,6 +52,10 @@ func _open() -> void:
 	get_tree().paused = true
 	visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	# When menu opens and first button gets focus, do NOT play sound once
+	_suppress_next_nav_sound = true
+	resume_button.grab_focus()
 
 
 func _close() -> void:
@@ -57,3 +80,17 @@ func _on_main_menu_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+# =========================================
+# NAV SOUND HELPER
+# =========================================
+func _on_option_focus_entered() -> void:
+	# Skip the very first focus when menu opens
+	if _suppress_next_nav_sound:
+		_suppress_next_nav_sound = false
+		return
+
+	if _nav_player:
+		_nav_player.stop()
+		_nav_player.play()

@@ -144,7 +144,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 17.5284, 41.5798)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody3D" parent="Characters" groups=["player", "player_global", "sucess_menu"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.152, -62.0613, -69.124)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.152, -0.611412, -218.183)
 script = ExtResource("1_glv2v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Characters/Player"]
