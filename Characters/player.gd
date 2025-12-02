@@ -6,27 +6,26 @@ const RUN_MULT: float = 1.4
 const JUMP_VELOCITY: float = 9.0
 
 const MOUSE_SENS: float = 0.005
-const TURN_SPEED: float = 10.0
 
 const PITCH_MIN: float = deg_to_rad(-89.0)
 const PITCH_MAX: float = deg_to_rad(89.0)
 
-# Crouch
-const CROUCH_SCALE: float = 0.4       # fraction of capsule height while crouched
+# Crouch settings
+const CROUCH_SCALE: float = 0.4        # fraction of capsule height while crouched
 const CROUCH_SPEED_MULT: float = 0.7
-const CROUCH_LERP: float = 12.0       # how fast we lerp crouch state
-const CAM_CROUCH_DROP: float = 1.0    # meters camera moves down when fully crouched
-const HEADROOM_MARGIN: float = 0.05   # extra space needed to stand up
+const CAM_CROUCH_DROP: float = 1.0     # meters camera moves down when fully crouched
+const HEADROOM_MARGIN: float = 0.05    # extra space needed to stand up
 const CROUCH_DISABLE_SPRINT: bool = true
+const CROUCH_LERP: float = 10.0        # how fast crouch transitions (bigger = snappier)
 
 # Jump “coyote time”
 const COYOTE_TIME: float = 0.15
 
 # ==================== NODES ==========================
-@onready var pivot_yaw: Node3D       = $PivotYaw
-@onready var pivot_pitch: Node3D     = $PivotYaw/PivotPitch
-@onready var camera: Camera3D        = $PivotYaw/PivotPitch/Camera3D
-@onready var collider: CollisionShape3D = $CollisionShape3D
+@onready var pivot_yaw: Node3D              = $PivotYaw
+@onready var pivot_pitch: Node3D            = $PivotYaw/PivotPitch
+@onready var camera: Camera3D               = $PivotYaw/PivotPitch/Camera3D
+@onready var collider: CollisionShape3D     = $CollisionShape3D
 
 # ==================== STATE ==========================
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity") as float
@@ -37,12 +36,12 @@ var pitch: float = 0.0
 var _mouse_captured: bool = true
 var _time_since_floor: float = 0.0
 
-# crouch
-var _is_crouching: bool = false      # desired (input)
-var _crouch_t: float = 0.0           # smoothed 0..1
+# Crouch state
+var _is_crouching: bool = false    # desired (input)
+var _crouch_t: float = 0.0         # smoothed 0..1
 var _cam_base_y: float = 0.0
 
-# capsule data
+# Capsule data for crouch height scaling
 var _capsule: CapsuleShape3D = null
 var _capsule_h_base: float = 0.0
 var _capsule_r_base: float = 0.0
@@ -53,16 +52,23 @@ var _collider_local_y_base: float = 0.0
 func _ready() -> void:
 	randomize()
 
+	# Initialize yaw/pitch from whatever orientation the scene / spawn gives us.
+	# This prevents spawn rotation from being overwritten.
+	if pivot_yaw:
+		yaw = pivot_yaw.rotation.y
+	if pivot_pitch:
+		pitch = pivot_pitch.rotation.x
+
 	_capture_mouse()
 	_update_view_nodes()
 
-	# cache camera base height
+	# Cache camera base height
 	if pivot_pitch:
 		_cam_base_y = pivot_pitch.position.y
 
-	# cache capsule info
+	# Cache capsule info for crouch
 	if collider and collider.shape is CapsuleShape3D:
-		_capsule = collider.shape
+		_capsule = collider.shape as CapsuleShape3D
 		_capsule_h_base = _capsule.height
 		_capsule_r_base = _capsule.radius
 		_collider_local_y_base = collider.position.y
@@ -76,6 +82,7 @@ func _ready() -> void:
 
 # ==================== INPUT ==========================
 func _input(event: InputEvent) -> void:
+	# Toggle mouse capture (pause, menu, etc.)
 	if event.is_action_pressed("ui_cancel"):
 		_mouse_captured = not _mouse_captured
 		if _mouse_captured:
@@ -83,6 +90,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			_release_mouse()
 
+	# Mouse look
 	if _mouse_captured and event is InputEventMouseMotion:
 		var mm := event as InputEventMouseMotion
 		yaw   -= mm.relative.x * MOUSE_SENS
@@ -91,9 +99,20 @@ func _input(event: InputEvent) -> void:
 		_update_view_nodes()
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_FOCUS_IN and _mouse_captured:
-		_capture_mouse()
+#func _notification(what: int) -> void:
+#	if what == NOTIFICATION_WM_FOCUS_IN:
+#		if _mouse_captured:
+#			_capture_mouse()
+#	elif what == NOTIFICATION_WM_FOCUS_OUT:
+#		_release_mouse()
+
+
+# ==================== VIEW HELPERS ====================
+func _update_view_nodes() -> void:
+	if pivot_yaw:
+		pivot_yaw.rotation.y = yaw
+	if pivot_pitch:
+		pivot_pitch.rotation.x = pitch
 
 
 func _capture_mouse() -> void:
@@ -104,18 +123,8 @@ func _release_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
-func _update_view_nodes() -> void:
-	if pivot_yaw:
-		pivot_yaw.rotation.y = yaw
-	if pivot_pitch:
-		pivot_pitch.rotation.x = pitch
-
-
 # ==================== PHYSICS =========================
 func _physics_process(delta: float) -> void:
-	# Remember previous grounded state for landing detection
-	var was_on_floor: bool = _was_on_floor
-
 	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -129,22 +138,23 @@ func _physics_process(delta: float) -> void:
 	else:
 		_time_since_floor += delta
 
-	# Movement input
+	# Movement input (uses your existing actions)
 	var move_input: Vector2 = Input.get_vector("move_left", "move_right", "move_backward", "move_forward")
-	var want_crouch: bool = Input.is_action_pressed("crouch")
+	var want_crouch: bool = Input.is_action_pressed("move_crouch")
 
 	# Sprint
-	var sprint_input: bool = Input.is_action_pressed("sprint")
+	var sprint_input: bool = Input.is_action_pressed("move_sprint")
 	var can_sprint: bool = (not CROUCH_DISABLE_SPRINT) or (not _is_crouching)
 	var is_sprinting: bool = sprint_input and can_sprint
 
-	# Jump
-	if Input.is_action_just_pressed("jump"):
+	# Jump (with coyote time)
+	if Input.is_action_just_pressed("move_jump"):
 		if _time_since_floor <= COYOTE_TIME:
 			velocity.y = JUMP_VELOCITY
 
-	# Crouch logic (with headroom check)
+	# Crouch logic with headroom check
 	if not want_crouch and _is_crouching:
+		# Trying to stand up -> check headroom
 		if not _has_headroom_to_stand():
 			want_crouch = true
 
@@ -152,15 +162,23 @@ func _physics_process(delta: float) -> void:
 	var crouch_target: float = (1.0 if _is_crouching else 0.0)
 	_crouch_t = lerpf(_crouch_t, crouch_target, clamp(CROUCH_LERP * delta, 0.0, 1.0))
 
-	_apply_crouch_camera(delta)
+	_apply_crouch_camera()
 	_apply_crouch_collider()
 
-	# Direction relative to camera yaw
-	var basis := Basis(Vector3.UP, yaw)
-	var right: Vector3 = basis.x
-	var forward: Vector3 = -basis.z
-	var move_dir: Vector3 = (right * move_input.x) + (forward * move_input.y)
+	# -------- MOVEMENT DIRECTION (CAMERA-RELATIVE) ----------
+	# This is the key fix for your orientation issue.
+	# We move relative to pivot_yaw's *global* transform so
+	# any spawn rotation is automatically respected.
+	var basis: Basis
+	if pivot_yaw:
+		basis = pivot_yaw.global_transform.basis
+	else:
+		basis = global_transform.basis
 
+	var right: Vector3 = basis.x
+	var forward: Vector3 = -basis.z  # Godot's forward is -Z
+
+	var move_dir: Vector3 = (right * move_input.x) + (forward * move_input.y)
 	if move_dir.length_squared() > 1e-6:
 		move_dir = move_dir.normalized()
 
@@ -179,70 +197,52 @@ func _physics_process(delta: float) -> void:
 	velocity.x = horiz_vel.x
 	velocity.z = horiz_vel.z
 
-	# Walking and sprinting loop audio control
-	if _walk_player and _sprint_player:
-		if is_on_floor() and moving and wants_move:
-			if is_sprinting:
-				# Sprint: stop walk loop, play sprint loop
-				if _walk_player.playing:
-					_walk_player.stop()
-				if not _sprint_player.playing:
-					_sprint_player.play()
-			else:
-				# Walk: stop sprint loop, play walk loop
-				if _sprint_player.playing:
-					_sprint_player.stop()
-				if not _walk_player.playing:
-					_walk_player.play()
-		else:
-			# Not moving or in air: stop both
-			if _walk_player.playing:
-				_walk_player.stop()
-			if _sprint_player.playing:
-				_sprint_player.stop()
-
 	move_and_slide()
 
 
 # ==================== CROUCH HELPERS ==================
-func _apply_crouch_camera(delta: float) -> void:
+func _apply_crouch_camera() -> void:
 	if not pivot_pitch:
 		return
 
-	var target_y := lerpf(_cam_base_y, _cam_base_y - CAM_CROUCH_DROP, _crouch_t)
-	pivot_pitch.position.y = lerpf(pivot_pitch.position.y, target_y, clamp(CROUCH_LERP * delta, 0.0, 1.0))
+	# Move camera down when crouched
+	var offset := CAM_CROUCH_DROP * _crouch_t
+	var local_pos := pivot_pitch.position
+	local_pos.y = _cam_base_y - offset
+	pivot_pitch.position = local_pos
 
 
 func _apply_crouch_collider() -> void:
-	if not _capsule or not collider:
+	if not collider or _capsule == null:
 		return
 
-	var h_target: float = _capsule_h_base * lerpf(1.0, CROUCH_SCALE, _crouch_t)
-	_capsule.height = h_target
+	# Scale capsule height
+	var t := _crouch_t
+	var new_height := lerpf(_capsule_h_base, _capsule_h_base * CROUCH_SCALE, t)
+	_capsule.height = new_height
 
-	# keep feet planted: adjust collider position so bottom stays on ground
-	var half_base: float = _capsule_h_base * 0.5
-	var half_now: float = _capsule.height * 0.5
-	var foot_fix: float = (half_now - half_base)
-	collider.position.y = _collider_local_y_base + foot_fix
+	# Adjust collider's local Y so feet stay on the ground
+	var stand_half := _capsule_h_base * 0.5
+	var crouch_half := new_height * 0.5
+	var offset_y := (stand_half - crouch_half)
+	var pos := collider.position
+	pos.y = _collider_local_y_base - offset_y
+	collider.position = pos
 
 
 func _has_headroom_to_stand() -> bool:
-	if not _capsule:
+	# Simple ray check above the player's head to see if there's space to stand.
+	if not collider:
 		return true
 
-	var origin: Vector3 = global_transform.origin
-	var current_half: float = _capsule.height * 0.5
-	var stand_half: float   = _capsule_h_base * 0.5
+	var space_state := get_world_3d().direct_space_state
+	var from: Vector3 = global_transform.origin
+	var to: Vector3 = from + Vector3.UP * (_capsule_h_base * (1.0 - CROUCH_SCALE) + HEADROOM_MARGIN)
 
-	var from: Vector3 = origin + Vector3.UP * (current_half + _capsule.radius)
-	var to:   Vector3 = origin + Vector3.UP * (stand_half + _capsule.radius + HEADROOM_MARGIN)
-
-	var space := get_world_3d().direct_space_state
 	var params := PhysicsRayQueryParameters3D.create(from, to)
 	params.exclude = [self]
 
-	var hit := space.intersect_ray(params)
+	var hit := space_state.intersect_ray(params)
 	return hit.is_empty()
 
 

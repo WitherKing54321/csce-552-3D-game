@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=32 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://Characters/player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://br1oj1tpl4q58" path="res://Characters/shopkeep.gd" id="2_uu6xs"]
@@ -34,49 +34,6 @@ size = Vector3(100, 0, 100)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rxg2q"]
 radius = 0.8
 height = 2.5
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_uu6xs"]
-radius = 0.3
-height = 1.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
-albedo_color = Color(3.85046e-07, 0.63374, 0.943833, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_r0du0"]
-radius = 0.3
-height = 0.6
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_cm0pq"]
-top_radius = 0.12
-bottom_radius = 0.12
-height = 0.7
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uu6xs"]
-albedo_color = Color(0.2, 0.666667, 0.333333, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_fos0i"]
-top_radius = 0.12
-bottom_radius = 0.12
-height = 0.7
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm0pq"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_glv2v"]
-top_radius = 0.14
-bottom_radius = 0.14
-height = 0.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fos0i"]
-albedo_color = Color(0.2, 0.666667, 0.333333, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_uu6xs"]
-top_radius = 0.14
-bottom_radius = 0.14
-height = 0.8
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uu6xs"]
 height = 4.0
@@ -153,7 +110,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 17.5284, 41.5798)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody3D" parent="Characters" groups=["player", "player_global", "sucess_menu"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -243.746, 0.482901, -214.04)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04936, 19.7525, 12.8806)
 script = ExtResource("1_glv2v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Characters/Player"]
@@ -168,64 +125,6 @@ omni_range = 20.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_rxg2q")
-
-[node name="Body" type="Node3D" parent="Characters/Player"]
-visible = false
-
-[node name="Torso" type="MeshInstance3D" parent="Characters/Player/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-layers = 2
-mesh = SubResource("CapsuleMesh_uu6xs")
-
-[node name="Head" type="MeshInstance3D" parent="Characters/Player/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
-visible = false
-layers = 2
-material_override = SubResource("StandardMaterial3D_3dxm6")
-mesh = SubResource("SphereMesh_r0du0")
-
-[node name="RArmPivot" type="Node3D" parent="Characters/Player/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.2, 0)
-visible = false
-
-[node name="RArm" type="MeshInstance3D" parent="Characters/Player/Body/RArmPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
-layers = 2
-material_override = SubResource("StandardMaterial3D_glv2v")
-mesh = SubResource("CylinderMesh_cm0pq")
-
-[node name="HandSocket" type="Node3D" parent="Characters/Player/Body/RArmPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00319827, -0.708405, 0)
-
-[node name="LArmPivot" type="Node3D" parent="Characters/Player/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.2, 0)
-visible = false
-
-[node name="LArm" type="MeshInstance3D" parent="Characters/Player/Body/LArmPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
-layers = 2
-material_override = SubResource("StandardMaterial3D_uu6xs")
-mesh = SubResource("CylinderMesh_fos0i")
-
-[node name="RLegPivot" type="Node3D" parent="Characters/Player/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.35, 0)
-visible = false
-
-[node name="RLeg" type="MeshInstance3D" parent="Characters/Player/Body/RLegPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
-layers = 2
-material_override = SubResource("StandardMaterial3D_cm0pq")
-mesh = SubResource("CylinderMesh_glv2v")
-
-[node name="LLegPivot" type="Node3D" parent="Characters/Player/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.35, 0)
-visible = false
-
-[node name="LLeg" type="MeshInstance3D" parent="Characters/Player/Body/LLegPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
-layers = 2
-material_override = SubResource("StandardMaterial3D_fos0i")
-mesh = SubResource("CylinderMesh_uu6xs")
 
 [node name="PivotYaw" type="Node3D" parent="Characters/Player"]
 visible = false
@@ -245,6 +144,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="Characters/Shopkeep"]
 script = ExtResource("5_5vvyt")
+dialog_lines = Array[String]([])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Shopkeep/Area3D"]
 shape = SubResource("CylinderShape3D_uu6xs")
@@ -263,6 +163,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="Characters/Shopkeep2"]
 script = ExtResource("5_5vvyt")
+dialog_lines = Array[String]([])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Shopkeep2/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -473,7 +374,7 @@ autowrap_mode = 2
 [node name="Checkpoints" type="Node" parent="."]
 
 [node name="StartSpawn" type="Node3D" parent="Checkpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 19, 13)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 19, 13)
 script = ExtResource("15_j4qnp")
 
 [node name="Checkpoint1" type="Area3D" parent="Checkpoints"]
@@ -485,7 +386,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 shape = SubResource("BoxShape3D_j4qnp")
 
 [node name="Checkpoint2" type="Area3D" parent="Checkpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, -63, -80)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -200, -63, -80)
 script = ExtResource("16_fpfj3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint2"]

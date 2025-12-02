@@ -1,19 +1,21 @@
 extends Node3D
 
+# Typed dialog array so it matches start_dialog(lines: Array[String])
+const DIALOG_LINES: Array[String] = [
+	"Where did you come from?",
+	"Oh, it doesn't matter, but watch out...",
+	"I've heard a lot of screaming today..."
+]
+
 @export var player_group := "player"
 @export var prompt_text := "Press ENTER to talk"
-@export var dialog_lines: Array[String] = [
-	"Welcome, traveler.",
-	"These halls are dangerous. Stay alert.",
-	"If you hear the Warden… run."
-]
-@export var one_time_only: bool = true   # allow turning replay on/off in Inspector
 
 @onready var area: Area3D = $Area3D
 @onready var prompt: Label3D = $Label3D
 
 var _player_in_range: Node3D = null
-var _dialog_played: bool = false         # tracks if dialog has already run once
+var _has_talked: bool = false   # one-time only flag
+
 
 func _ready() -> void:
 	prompt.text = prompt_text
@@ -24,11 +26,9 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(player_group):
-		# If this is one-time-only and already played, do nothing
-		if one_time_only and _dialog_played:
-			return
 		_player_in_range = body
-		prompt.visible = true
+		# Only show prompt if they have never talked before
+		prompt.visible = not _has_talked
 
 
 func _on_body_exited(body: Node) -> void:
@@ -36,35 +36,32 @@ func _on_body_exited(body: Node) -> void:
 		_player_in_range = null
 		prompt.visible = false
 
-		# Also hide/stop the dialog UI if it’s currently active
+		# (Optional) close dialog UI if it's still open
 		var dialog_ui := get_tree().get_first_node_in_group("dialog_ui")
 		if dialog_ui and dialog_ui.has_method("is_active") and dialog_ui.is_active():
 			if dialog_ui.has_method("force_close"):
-				dialog_ui.force_close()      # if you added a custom close method
+				dialog_ui.force_close()
 			elif dialog_ui is CanvasItem:
-				dialog_ui.hide()            # at least hide the control
+				dialog_ui.hide()
 
 
 func _process(_delta: float) -> void:
-	# No player nearby? do nothing
 	if _player_in_range == null:
 		return
 
-	# Prevent replay if one-time-only
-	if one_time_only and _dialog_played:
+	# Already spoke once in this playthrough → never again
+	if _has_talked:
 		return
 
 	var dialog_ui := get_tree().get_first_node_in_group("dialog_ui")
 	if dialog_ui == null:
 		return
 
-	# Do not start if dialog is already running (if method exists)
 	if dialog_ui.has_method("is_active") and dialog_ui.is_active():
 		return
 
-	# ENTER key (your dialog_next action) starts the dialog
 	if Input.is_action_just_pressed("dialog_next"):
 		if dialog_ui.has_method("start_dialog"):
-			dialog_ui.start_dialog(dialog_lines)
-		_dialog_played = true      # mark as done so it will not replay
+			dialog_ui.start_dialog(DIALOG_LINES)  # now typed correctly
+		_has_talked = true
 		prompt.visible = false
