@@ -9,7 +9,7 @@ const MOUSE_SENS: float = 0.005
 const TURN_SPEED: float = 10.0
 
 const PITCH_MIN: float = deg_to_rad(-89.0)
-const PITCH_MAX: float = deg_to_rad( 89.0)
+const PITCH_MAX: float = deg_to_rad(89.0)
 
 # Crouch
 const CROUCH_SCALE: float = 0.4       # fraction of capsule height while crouched
@@ -51,6 +51,8 @@ var _collider_local_y_base: float = 0.0
 
 # ==================== READY ==========================
 func _ready() -> void:
+	randomize()
+
 	_capture_mouse()
 	_update_view_nodes()
 
@@ -111,6 +113,9 @@ func _update_view_nodes() -> void:
 
 # ==================== PHYSICS =========================
 func _physics_process(delta: float) -> void:
+	# Remember previous grounded state for landing detection
+	var was_on_floor: bool = _was_on_floor
+
 	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -173,6 +178,28 @@ func _physics_process(delta: float) -> void:
 	horiz_vel = horiz_vel.lerp(target_vel, clamp(accel * delta, 0.0, 1.0))
 	velocity.x = horiz_vel.x
 	velocity.z = horiz_vel.z
+
+	# Walking and sprinting loop audio control
+	if _walk_player and _sprint_player:
+		if is_on_floor() and moving and wants_move:
+			if is_sprinting:
+				# Sprint: stop walk loop, play sprint loop
+				if _walk_player.playing:
+					_walk_player.stop()
+				if not _sprint_player.playing:
+					_sprint_player.play()
+			else:
+				# Walk: stop sprint loop, play walk loop
+				if _sprint_player.playing:
+					_sprint_player.stop()
+				if not _walk_player.playing:
+					_walk_player.play()
+		else:
+			# Not moving or in air: stop both
+			if _walk_player.playing:
+				_walk_player.stop()
+			if _sprint_player.playing:
+				_sprint_player.stop()
 
 	move_and_slide()
 

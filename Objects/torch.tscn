@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://rbi56mb4ugp1"]
+[gd_scene load_steps=5 format=3 uid="uid://rbi56mb4ugp1"]
 
 [ext_resource type="PackedScene" uid="uid://sqe3imt0t1hg" path="res://Objects/fire.tscn" id="1_yseja"]
 [ext_resource type="PackedScene" uid="uid://cmnphuahoiw82" path="res://Objects/torch_post.glb" id="2_vo3cf"]
+[ext_resource type="AudioStream" uid="uid://d3nirvdjv34hc" path="res://Sounds/Torch.wav" id="3_vo3cf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5w7kb"]
 size = Vector3(0.2, 0.8, 0.2)
@@ -18,3 +19,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.415617, 0.284081, -0.00303
 
 [node name="torch_post" parent="." instance=ExtResource("2_vo3cf")]
 transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, -0.181158, -0.219482, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vo3cf")
+volume_db = -51.532
+autoplay = true
