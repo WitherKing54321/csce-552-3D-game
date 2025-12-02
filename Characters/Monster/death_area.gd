@@ -1,51 +1,43 @@
-# res://Characters/Monster/death_area.gd  (path can be different, that’s fine)
 extends Area3D
 
-@export var player_group: String = "player_global"  # or "player" if that's your group
+@export var player_group: String = "player"   # must match your player's group
 
 const GAME_OVER_SCENE := preload("res://UI/GameOverMenu.tscn")
 
-var _triggered: bool = false
 var _active: bool = false
+var _triggered: bool = false
+
 
 func _ready() -> void:
-	# Start OFF; chase controller will call enable()
 	monitoring = false
 	monitorable = true
-
 	body_entered.connect(_on_body_entered)
-	print("Death area ready")
+	print("DeathArea READY on ", get_path(), " (monitoring OFF)")
 
-# --- called from chase_controller_2.gd ---
 
-func enable() -> void:
-	_active = true
-	monitoring = true
-	print("Death area ENABLED")
+func set_active(value: bool) -> void:
+	_active = value
+	monitoring = value
+	if not value:
+		_triggered = false
+	print("DeathArea set_active on ", get_path(), " -> ", _active)
 
-func disable() -> void:
-	_active = false
-	monitoring = false
-	print("Death area DISABLED")
-
-# --- collision handler ---
 
 func _on_body_entered(body: Node3D) -> void:
-	print("Death area entered by:", body.name)
+	print("DeathArea body_entered on ", get_path(), " by ", body.name, " | active=", _active)
 
-	# Only work during chase
 	if not _active:
+		print("  -> not active, ignoring")
 		return
 
-	# Don't refire after first player hit
 	if _triggered:
+		print("  -> already triggered once, ignoring")
 		return
 
-	# Only react to the player
 	if not body.is_in_group(player_group):
+		print("  -> body NOT in group '", player_group, "', ignoring")
 		return
 
 	_triggered = true
-	print("Death area: PLAYER hit -> switching to GameOverMenu")
-
+	print("DeathArea: PLAYER HIT, loading GameOverMenu.tscn")
 	get_tree().change_scene_to_packed(GAME_OVER_SCENE)

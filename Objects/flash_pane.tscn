@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwp61bo5ftxp1"]
+[gd_scene load_steps=4 format=3 uid="uid://cwp61bo5ftxp1"]
+
+[ext_resource type="Script" uid="uid://b3otf3beh8f0d" path="res://Objects/flash_pane.gd" id="1_k2sff"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s8o2a"]
 size = Vector2(2.4, 1.7)
@@ -11,6 +13,7 @@ emission_energy_multiplier = 2.0
 
 [node name="FlashPaneRoot" type="Node3D"]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -0.01, 0, 0)
+script = ExtResource("1_k2sff")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
@@ -22,3 +25,9 @@ transform = Transform3D(-4.37114e-08, 1.38933, 0, -1, -6.07297e-08, 0, 0, 0, 1, 
 mesh = SubResource("PlaneMesh_s8o2a")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_q5hat")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 50.0
+light_indirect_energy = 50.0
+light_specular = 0.0
+omni_range = 70.0

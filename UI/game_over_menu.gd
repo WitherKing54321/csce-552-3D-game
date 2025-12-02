@@ -14,16 +14,13 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	visible = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	set_process(true)
 
-	if retry_button == null or quit_button == null:
-		push_error("GameOverMenu: Retry or Quit button paths are not set correctly.")
-		return
+	# Connect buttons if not already connected in the editor
+	if retry_button and not retry_button.pressed.is_connected(_on_retry_pressed):
+		retry_button.pressed.connect(_on_retry_pressed)
 
-	print("GameOverMenu: hooking up buttons")
-	retry_button.pressed.connect(_on_retry_pressed)
-	quit_button.pressed.connect(_on_quit_pressed)
+	if quit_button and not quit_button.pressed.is_connected(_on_quit_pressed):
+		quit_button.pressed.connect(_on_quit_pressed)
 
 func _process(_delta: float) -> void:
 	# Keep mouse visible while this menu is open
@@ -33,6 +30,7 @@ func _process(_delta: float) -> void:
 func _on_retry_pressed() -> void:
 	print("GameOverMenu: Retry pressed")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Reloading Main.tscn will cause the player to spawn at the last checkpoint
 	get_tree().change_scene_to_file("res://Main.tscn")
 
 func _on_quit_pressed() -> void:

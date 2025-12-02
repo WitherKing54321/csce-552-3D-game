@@ -974,12 +974,16 @@ shape = SubResource("ConcavePolygonShape3D_ahtnr")
 shape = SubResource("ConcavePolygonShape3D_pgowt")
 
 [node name="FlashPaneRoot" parent="Window_Empty_002" index="0" instance=ExtResource("3_m2h3l")]
+transform = Transform3D(0.6, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0.0191803, -0.00866699, 0)
 
 [node name="FlashPaneRoot" parent="Window_Empty_003" index="0" instance=ExtResource("3_m2h3l")]
+transform = Transform3D(0.8, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.0173492, -0.0499873, 0)
 
 [node name="FlashPaneRoot" parent="Window_Empty_004" index="0" instance=ExtResource("3_m2h3l")]
+transform = Transform3D(0.8, 0, -6.21725e-14, 0, 0.7, 0, 7.10543e-14, 0, 0.7, 0.00416565, -0.0437007, 0.0150299)
 
 [node name="FlashPaneRoot" parent="Window_Empty_005" index="0" instance=ExtResource("3_m2h3l")]
+transform = Transform3D(0.8, 0, -8.52651e-14, 0, 0.7, 0, 8.52651e-14, 0, 0.7, 0.0129547, -0.0665898, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_074" index="0"]
 
@@ -1479,7 +1483,7 @@ shape = SubResource("ConcavePolygonShape3D_ara12")
 shape = SubResource("ConcavePolygonShape3D_qxqqw")
 
 [node name="FlashPaneRoot" parent="Window_Empty_006" index="0" instance=ExtResource("3_m2h3l")]
-transform = Transform3D(0.75, 0, 0, 0, 0.663394, 0, 0, 0, 0.619313, -0.00110817, -0.0236998, -0.0195313)
+transform = Transform3D(0.75, 0, 0, 0, 0.7, 0, 0, 0, 0.619, 0.0469875, -0.123858, -0.0195313)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tutorial_ceiling" index="0"]
 

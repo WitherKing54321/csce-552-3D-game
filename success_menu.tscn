@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://76sjsmta6cmv"]
 
-[ext_resource type="Script" uid="uid://h8jfi4hwp1sv" path="res://SuccessMenu.gd" id="1_8xsmd"]
+[ext_resource type="Script" uid="uid://h8jfi4hwp1sv" path="res://UI/SuccessMenu.gd" id="1_8xsmd"]
 
 [node name="SuccessMenu" type="CanvasLayer" groups=["player", "player_global", "sucess_menu"]]
 visible = false

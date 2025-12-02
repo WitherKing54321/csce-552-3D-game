@@ -3,9 +3,9 @@ extends Node3D
 @export var player_group := "player"
 @export var prompt_text := "Press ENTER to talk"
 @export var dialog_lines: Array[String] = [
-	"Welcome, traveler.",
-	"These halls are dangerous. Stay alert.",
-	"If you hear the Warden… run."
+	"How did you survive that thing?!",
+	"I'm never leaving this spot...",
+	"We are all going to die..."
 ]
 @export var one_time_only: bool = true   # allow turning replay on/off in Inspector
 

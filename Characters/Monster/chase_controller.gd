@@ -1,76 +1,89 @@
 extends Node3D
 
-@export var path_follow: PathFollow3D        # Drag MonsterPathFollow here
-@export var death_area: Area3D               # Drag DeathArea here
-@export var speed: float = 8.0               # Units per second along the path
-@export var auto_reset: bool = false         # If true, loop back to start when done
+# These are per-chase references you set in the Inspector.
+@export var path_follow: PathFollow3D          # e.g. MonsterPathFollow
+@export var monster_root: Node3D               # root of the monster model for this chase
+@export var death_area: Area3D                 # the Area3D that kills the player
+@export var speed: float = 8.0                 # movement speed along the path
+@export var auto_reset: bool = false           # if true, loop back to start at end
 
 var _active: bool = false
 
 
 func _ready() -> void:
-	# If nothing is assigned in the Inspector, try to find PathFollow automatically
-	if path_follow == null:
-		var candidate := get_node_or_null("MonsterPathFollow")
-		if candidate == null:
-			candidate = get_node_or_null("MonsterPath/MonsterPathFollow")
-		if candidate is PathFollow3D:
-			path_follow = candidate
+	print("--- ChaseController _ready on ", name, " ---")
+	print("  path_follow =", path_follow)
+	print("  monster_root =", monster_root)
+	print("  death_area =", death_area)
 
-	# (Optional) Try to auto-find DeathArea if not set
-	if death_area == null:
-		var da := find_child("DeathArea", true, false)
-		if da is Area3D:
-			death_area = da
+	# Hide monster at start
+	if monster_root:
+		monster_root.visible = false
+		monster_root.process_mode = Node.PROCESS_MODE_DISABLED
+		print("  -> MonsterRoot hidden at start")
+	else:
+		push_error("ChaseController(" + name + "): monster_root is NOT set in Inspector")
+
+	# Disable death hitbox at start
+	if death_area:
+		if death_area.has_method("set_active"):
+			death_area.set_active(false)
+		else:
+			death_area.monitoring = false
+		print("  -> DeathArea disabled at start")
+	else:
+		push_error("ChaseController(" + name + "): death_area is NOT set in Inspector")
 
 
 func start_chase() -> void:
 	if path_follow == null:
+		push_error("ChaseController(" + name + "): path_follow is NOT set, cannot start chase")
 		return
 
+	print("--- ChaseController START CHASE on ", name, " ---")
 	_active = true
 	path_follow.progress = 0.0
 
-	# Turn on the lethal hitbox
+	# Show monster
+	if monster_root:
+		monster_root.visible = true
+		monster_root.process_mode = Node.PROCESS_MODE_INHERIT
+		print("  -> MonsterRoot made visible")
+
+	# Enable death hitbox
 	if death_area:
-		death_area.enable()
-
-	# Start chase SFX/music here if you want
-
-
-func reset_chase() -> void:
-	_active = false
-
-	# Turn off the lethal hitbox when the chase ends / is reset
-	if death_area:
-		death_area.disable()
+		if death_area.has_method("set_active"):
+			death_area.set_active(true)
+		else:
+			death_area.monitoring = true
+		print("  -> DeathArea enabled")
 
 
 func _process(delta: float) -> void:
-	if not _active:
-		return
-	if path_follow == null:
+	if not _active or path_follow == null:
 		return
 
-	# Move along the path
 	path_follow.progress += speed * delta
 
-	# Stop at the end of the path
-	var path := path_follow.get_parent() as Path3D
-	if path == null:
+	# Optional: stop at end of path
+	var path_node = path_follow.get_parent()
+	if not (path_node is Path3D):
 		return
 
-	var curve: Curve3D = path.curve
+	var curve = (path_node as Path3D).curve
 	if curve == null:
 		return
 
 	if path_follow.progress >= curve.get_baked_length():
+		print("--- ChaseController reached end of path on ", name, " ---")
 		_active = false
 
-		# Optional looping
+		# Turn off lethal hitbox when done
+		if death_area:
+			if death_area.has_method("set_active"):
+				death_area.set_active(false)
+			else:
+				death_area.monitoring = false
+
 		if auto_reset:
 			path_follow.progress = 0.0
-
-		# Chase is done: disable death area
-		if death_area:
-			death_area.disable()
