@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwp61bo5ftxp1"]
+[gd_scene load_steps=6 format=3 uid="uid://cwp61bo5ftxp1"]
 
 [ext_resource type="Script" uid="uid://b3otf3beh8f0d" path="res://Objects/flash_pane.gd" id="1_k2sff"]
+[ext_resource type="AudioStream" uid="uid://1fhkdrpeltq0" path="res://Sounds/ThunderSound.wav" id="2_vaq7d"]
+[ext_resource type="Script" uid="uid://dqlyvwya7pap5" path="res://Objects/Thunder.gd" id="3_vfd67"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s8o2a"]
 size = Vector2(2.4, 1.7)
@@ -31,3 +33,7 @@ light_energy = 50.0
 light_indirect_energy = 50.0
 light_specular = 0.0
 omni_range = 70.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("3_vfd67")
+thunder_stream = ExtResource("2_vaq7d")
