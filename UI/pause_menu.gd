@@ -75,7 +75,7 @@ func _on_resume_pressed() -> void:
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://Main.tscn") # adjust path
+	get_tree().change_scene_to_file("res://main_menu.tscn") # <-- CHANGED THIS LINE
 
 
 func _on_quit_pressed() -> void:

@@ -345,3 +345,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_chase_trigger_body_entered(body: Node3D) -> void:
 	pass
+
+
+func _on_main_menu_pressed() -> void:
+	pass # Replace with function body.
