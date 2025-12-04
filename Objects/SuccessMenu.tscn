@@ -40,6 +40,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Retry"
 
+[node name="MainMenu" type="Button" parent="SuccessMenu/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
 [node name="Quit" type="Button" parent="SuccessMenu/Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40

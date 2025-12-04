@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://h8jfi4hwp1sv" path="res://UI/SuccessMenu.gd" id="1_8xsmd"]
 
 [node name="SuccessMenu" type="CanvasLayer" groups=["player", "player_global", "sucess_menu"]]
-visible = false
 script = ExtResource("1_8xsmd")
 
 [node name="Panel" type="Panel" parent="."]
@@ -36,6 +35,11 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Retry"
+
+[node name="MainMenu" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
 
 [node name="Quit" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2

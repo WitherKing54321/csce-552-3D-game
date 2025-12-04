@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="3DGameProject"
+config/name="Through The Ruin"
 run/main_scene="uid://cjom7dn226102"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
