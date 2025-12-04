@@ -349,3 +349,7 @@ func _on_chase_trigger_body_entered(body: Node3D) -> void:
 
 func _on_main_menu_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_guide_trigger_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.
