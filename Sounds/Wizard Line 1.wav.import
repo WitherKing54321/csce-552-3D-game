@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3jp2ng4l0cjl"
+path="res://.godot/imported/Wizard Line 1.wav-6499a8bb8a8f934567fc97a45266773a.sample"
+
+[deps]
+
+source_file="res://Sounds/Wizard Line 1.wav"
+dest_files=["res://.godot/imported/Wizard Line 1.wav-6499a8bb8a8f934567fc97a45266773a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

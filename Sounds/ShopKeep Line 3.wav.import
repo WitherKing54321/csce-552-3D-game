@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://daudvjhauv4k"
+path="res://.godot/imported/ShopKeep Line 3.wav-0c4d50b27cc96384b1b9424ece161275.sample"
+
+[deps]
+
+source_file="res://Sounds/ShopKeep Line 3.wav"
+dest_files=["res://.godot/imported/ShopKeep Line 3.wav-0c4d50b27cc96384b1b9424ece161275.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

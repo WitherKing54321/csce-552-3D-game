@@ -8,6 +8,7 @@ signal dialog_finished
 var _lines: Array[String] = []
 var _index: int = 0
 var _active: bool = false
+var _speaker_npc: Node = null   # NPC that owns the audio for these lines
 
 
 func _ready() -> void:
@@ -18,7 +19,8 @@ func _ready() -> void:
 	set_process_unhandled_input(false)
 
 
-func start_dialog(lines: Array[String]) -> void:
+# NEW: optional speaker_npc argument
+func start_dialog(lines: Array[String], speaker_npc: Node = null) -> void:
 	# Always use ONLY the lines passed in from the NPC
 	if lines.is_empty():
 		return
@@ -26,6 +28,7 @@ func start_dialog(lines: Array[String]) -> void:
 	_lines = lines.duplicate()
 	_index = 0
 	_active = true
+	_speaker_npc = speaker_npc
 
 	_show_current_line()
 	dialog_panel.show()
@@ -53,6 +56,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _advance_line() -> void:
+	# Stop current line audio if any, since we are about to move on
+	if _speaker_npc and _speaker_npc.has_method("stop_line_audio"):
+		_speaker_npc.stop_line_audio()
+
 	_index += 1
 
 	if _index >= _lines.size():
@@ -65,10 +72,20 @@ func _show_current_line() -> void:
 	if _index >= 0 and _index < _lines.size():
 		dialog_label.text = _lines[_index]
 
+		# Tell the NPC to play audio for this line index
+		if _speaker_npc and _speaker_npc.has_method("play_line_audio"):
+			_speaker_npc.play_line_audio(_index)
+
 
 func _finish_dialog() -> void:
 	_active = false
 	dialog_panel.hide()
 	hide()
 	set_process_unhandled_input(false)
+
+	# Make sure audio stops when dialog ends or is forced closed
+	if _speaker_npc and _speaker_npc.has_method("stop_line_audio"):
+		_speaker_npc.stop_line_audio()
+	_speaker_npc = null
+
 	emit_signal("dialog_finished")
