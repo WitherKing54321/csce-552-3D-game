@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://84tj6f1ca3rf"]
+
+[ext_resource type="Script" uid="uid://dxnsyax7owrls" path="res://ControlsMenu.gd" id="1_cv67w"]
+
+[node name="ControlsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cv67w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20717, 0.20717, 0.20717, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -29.0
+offset_right = 33.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Controls" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "
+Move:	 WASD or Arrow Keys
+
+Look: Mouse/Trackpad
+
+Jump: 'Spacebar'
+
+Crouch: Left CTRL
+
+Sprint: Left Shift
+
+Start/Continue Dialog: E
+"
+
+[node name="BackButton" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back"

@@ -26,22 +26,22 @@ theme_override_constants/separation = 20
 
 [node name="EscapeText" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 100
 text = "You Escaped!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Retry" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 70
 text = "Retry"
 
 [node name="MainMenu" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 70
 text = "Main Menu"
 
 [node name="Quit" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 70
 text = "Quit"

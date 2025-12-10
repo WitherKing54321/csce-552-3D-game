@@ -1,8 +1,10 @@
 extends Node3D
 
 const DIALOG_LINES: Array[String] = [
-	"How did you survive that thing?!",
-	"I'm never leaving this spot...",
+	"*YELP*",
+	"I didn't see you there...",
+	"How did you make it here?!",
+	"I am not leaving this spot!",
 	"We are all going to die..."
 ]
 

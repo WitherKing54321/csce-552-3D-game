@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjom7dn226102"]
+[gd_scene load_steps=5 format=3 uid="uid://cjom7dn226102"]
 
 [ext_resource type="Script" uid="uid://p651bwpeevmk" path="res://MainMenu.gd" id="1_06t4h"]
 [ext_resource type="PackedScene" uid="uid://day2xcnccv5hs" path="res://Main.tscn" id="2_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://84tj6f1ca3rf" path="res://ControlsMenu.tscn" id="3_fu7sn"]
 
 [sub_resource type="FontVariation" id="FontVariation_7vrkn"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_06t4h")
 game_scene = ExtResource("2_7vrkn")
+controls_scene = ExtResource("3_fu7sn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -18,30 +20,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.276226, 0.000669547, 0.43711, 1)
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_7vrkn")
-theme_override_font_sizes/font_size = 100
-text = "Through The Ruin
-
-
-
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+color = Color(0.201503, 3.00817e-09, 0.0753946, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 custom_minimum_size = Vector2(300, 0)
@@ -51,14 +37,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -24.0
-offset_right = 150.0
-offset_bottom = 166.0
+offset_left = -428.0
+offset_top = -236.0
+offset_right = 428.0
+offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_7vrkn")
+theme_override_font_sizes/font_size = 100
+text = "Through The Ruin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Control/VBoxContainer/Label"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.819608)
 
 [node name="PlayButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
