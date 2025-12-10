@@ -4,7 +4,7 @@ extends Node3D
 # Typed dialog array so it matches start_dialog(lines: Array[String])
 const DIALOG_LINES: Array[String] = [
 	"Where did you come from?",
-	"Oh, it doesn't matter, but watch out...",
+	"Eh, it doesn't matter, but watch out...",
 	"I've heard a lot of screaming today..."
 ]
 
@@ -17,7 +17,7 @@ const DIALOG_AUDIO: Array[AudioStream] = [
 ]
 
 @export var player_group := "player"
-@export var prompt_text := "Press ENTER to talk"
+@export var prompt_text := "Press E to talk"
 
 @onready var area: Area3D = $Area3D
 @onready var prompt: Label3D = $Label3D

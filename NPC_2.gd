@@ -9,7 +9,7 @@ const DIALOG_LINES: Array[String] = [
 ]
 
 @export var player_group := "player"
-@export var prompt_text := "Press ENTER to talk"
+@export var prompt_text := "Press E to talk"
 
 @onready var area: Area3D = $Area3D
 @onready var prompt: Label3D = $Label3D

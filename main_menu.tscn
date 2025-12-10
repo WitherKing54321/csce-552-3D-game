@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjom7dn226102"]
+[gd_scene load_steps=6 format=3 uid="uid://cjom7dn226102"]
 
 [ext_resource type="Script" uid="uid://p651bwpeevmk" path="res://MainMenu.gd" id="1_06t4h"]
 [ext_resource type="PackedScene" uid="uid://8qou30li0pkk" path="res://intro_cutscene.tscn" id="2_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://84tj6f1ca3rf" path="res://ControlsMenu.tscn" id="3_fu7sn"]
+[ext_resource type="PackedScene" uid="uid://ct0yv6323unm0" path="res://AboutMenu.tscn" id="4_jix8l"]
 
 [sub_resource type="FontVariation" id="FontVariation_7vrkn"]
 
@@ -10,6 +11,7 @@
 script = ExtResource("1_06t4h")
 game_scene = ExtResource("2_7vrkn")
 controls_scene = ExtResource("3_fu7sn")
+about_scene = ExtResource("4_jix8l")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -73,6 +75,11 @@ text = "Play"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Controls"
+
+[node name="AboutButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "About"
 
 [node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2

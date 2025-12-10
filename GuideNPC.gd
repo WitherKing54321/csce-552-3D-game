@@ -3,7 +3,7 @@ extends Node3D
 # 1) First dialog when the player reaches the NPC
 const TALK_DIALOG_LINES: Array[String] = [
 	"People are dying here left and right.",
-	"Staing here is a death wish, let's go."
+	"Staying here is a death wish, let's go."
 ]
 
 # 2) Auto-play dialog while the guide is walking

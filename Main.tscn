@@ -46,7 +46,7 @@ size = Vector3(1, 6.08789, 4.16541)
 
 [sub_resource type="Curve3D" id="Curve3D_kjvhd"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.25, 0, 0, 0, 0, 0, 0, 39, 0, 4.25, 0, 0, 0, 0, 0, 0, 39, 0, 13, 0, 0, 0, 0, 0, 0, 39, -59.5, 118.5, 0, 0, 0, 0, 0, 0, 39, -59.5, 130),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.25, 0, 0, 0, 0, 0, 0, 39, 0, 4.25, 0, 0, 0, 0, 0, 0, 39, 0, 13, 0, 0, 0, 0, 0, 0, 39, -59.7, 118.5, 0, 0, 0, 0, 0, 0, 39, -59.7, 130),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
@@ -117,7 +117,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 18.0009, 42.3379)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody3D" parent="Characters" groups=["player", "player_global", "sucess_menu"]]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.78553, 19.9919, 12.8901)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.25347, 19.7995, 13.4208)
 script = ExtResource("1_glv2v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Characters/Player"]
@@ -157,7 +157,7 @@ dialog_lines = Array[String]([])
 shape = SubResource("CylinderShape3D_uu6xs")
 
 [node name="Label3D" type="Label3D" parent="Characters/Shopkeep"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08566, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Characters/Shopkeep"]
 
@@ -278,7 +278,7 @@ script = ExtResource("7_trn2v")
 path_follow = NodePath("MonsterPath/MonsterPathFollow")
 monster_root = NodePath("MonsterPath/MonsterPathFollow/MonsterRoot")
 death_area = NodePath("MonsterPath/MonsterPathFollow/MonsterRoot/DeathArea")
-speed = 10.0
+speed = 11.7
 
 [node name="MonsterPath" type="Path3D" parent="Characters/MonsterChase1/ChaseController"]
 curve = SubResource("Curve3D_3dxm6")
@@ -325,7 +325,7 @@ script = ExtResource("7_trn2v")
 path_follow = NodePath("MonsterPath/MonsterPathFollow")
 monster_root = NodePath("MonsterPath/MonsterPathFollow/MonsterRoot2")
 death_area = NodePath("MonsterPath/MonsterPathFollow/MonsterRoot2/DeathArea")
-speed = 12.0
+speed = 12.5
 
 [node name="MonsterPath" type="Path3D" parent="Characters/MonsterChase2/ChaseController2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -156.696, -62.5528, -52.5736)

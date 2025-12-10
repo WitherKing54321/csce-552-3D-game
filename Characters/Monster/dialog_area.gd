@@ -18,7 +18,7 @@ func _ready() -> void:
 
 	if prompt_label:
 		prompt_label.visible = false
-		prompt_label.text = "Press ENTER to talk"
+		prompt_label.text = "Press E to talk"
 
 	# IMPORTANT: defer connecting so dialog_ui has time to join the group
 	call_deferred("_connect_dialog_ui")
