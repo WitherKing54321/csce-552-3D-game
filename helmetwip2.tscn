@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvrach7sxxthq"]
+
+[ext_resource type="PackedScene" uid="uid://case0ouywui0f" path="res://helmetwip.glb" id="1_weog6"]
+
+[node name="helmetwip" instance=ExtResource("1_weog6")]
+
+[node name="Cube_005" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.00516336, -3.97493e-05, -0.00738252, -0.00180212, 0.00872963, -0.00130741, 0.00715929, 0.00222607, 0.00499525, -0.137475, 3.116, 0.00123169)
+
+[node name="Cone" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.000303927, 0.174422, 0.00735524, -0.1649, 0.00270177, -0.057256, -0.0573189, -0.0068478, 0.164757, -9.31323e-09, 3.37399, 0.0820259)
+
+[node name="Cube" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.0606767, -3.59445e-09, -0.0606766, -0.0223926, 0.0797525, -0.0223926, 0.0563935, 0.0316679, 0.0563935, -5.58794e-09, 2.92841, -0.131321)
+
+[node name="Cube_022" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.174578, -5.19785e-08, -2.6077e-08, 4.07451e-08, 0.174578, -2.29359e-08, 7.45058e-09, 4.84232e-08, 0.174578, 7.7486e-07, 0.368479, -2.98023e-08)
+
+[node name="Cube_026" parent="Armature/Skeleton3D" index="4"]
+transform = Transform3D(0.174578, -3.51903e-08, -2.83471e-08, 2.57555e-08, 0.174578, 1.05844e-07, 3.31202e-08, -8.6962e-08, 0.174578, 2.68221e-07, 2.16161, 3.42727e-07)
+
+[node name="Sphere_005" parent="Armature/Skeleton3D" index="5"]
+transform = Transform3D(0.198395, -8.19564e-08, 2.98023e-08, 4.65661e-08, 0.198395, 2.6077e-08, -4.47035e-08, -3.72529e-09, 0.198395, 1.49012e-07, 2.67315, 1.04308e-07)
+
+[node name="Sphere_010" parent="Armature/Skeleton3D" index="6"]
+transform = Transform3D(0.174273, -0.0100842, 0.0021686, 0.0101558, 0.174171, -0.00623189, -0.00180361, 0.00634718, 0.174453, 0.0226246, 2.64452, -0.00844206)
+
+[node name="Cube_006" parent="Armature/Skeleton3D" index="7"]
+transform = Transform3D(0.174578, 4.91511e-08, 7.07805e-08, -3.87297e-08, 0.174578, -3.1017e-08, -4.84288e-08, 5.90878e-08, 0.174578, -8.34465e-07, 0.368481, -3.72529e-07)
+
+[node name="Cube_004" parent="Armature/Skeleton3D" index="8"]
+transform = Transform3D(0.174578, 2.91408e-08, 3.06754e-08, -4.42948e-09, 0.174578, 1.04792e-08, -1.60653e-08, 1.05747e-08, 0.174578, 2.98023e-07, 2.16161, -1.3411e-07)
+
+[node name="Sphere_011" parent="Armature/Skeleton3D" index="9"]
+transform = Transform3D(0.198395, 5.7742e-08, -4.47035e-08, -3.91155e-08, 0.198395, 5.21541e-08, 6.70552e-08, -3.35276e-08, 0.198395, -1.78814e-07, 2.67315, -1.19209e-07)
+
+[node name="Sphere_003" parent="Armature/Skeleton3D" index="10"]
+transform = Transform3D(0.174578, 0, 2.98023e-08, 0, 0.174578, -3.53903e-08, -4.47035e-08, 4.47035e-08, 0.174578, 8.9407e-08, 2.67315, 7.45058e-08)
+
+[node name="Cube_024" parent="Armature/Skeleton3D" index="11"]
+transform = Transform3D(0.174578, 1.4547e-07, -2.54584e-07, 1.21244e-07, 0.174578, 4.65661e-09, 2.54564e-07, -4.45289e-09, 0.174578, -2.02656e-06, 0.890189, 0.0707408)
+
+[node name="Cube_023" parent="Armature/Skeleton3D" index="12"]
+transform = Transform3D(0.0591647, 5.35511e-08, -0.0638205, 5.86179e-08, 0.0870255, -5.59592e-08, 0.0638197, -4.30274e-09, 0.0591642, 0.0102634, 1.92333, -0.469497)
+
+[node name="Cube_010" parent="Armature/Skeleton3D" index="13"]
+transform = Transform3D(0.173041, -1.23633e-07, -7.18555e-08, -1.42725e-07, 0.173041, 3.74857e-08, 7.18119e-08, -6.10016e-08, 0.173041, -0.0154483, -0.738684, 0.0707414)
+
+[node name="Cube_009" parent="Armature/Skeleton3D" index="14"]
+transform = Transform3D(0.174578, -1.38069e-07, 2.48885e-07, -1.30851e-07, 0.174578, 6.74276e-09, -2.48866e-07, -6.59436e-09, 0.174578, 2.05636e-06, 0.890189, 0.0707408)
+
+[node name="Cube_008" parent="Armature/Skeleton3D" index="15"]
+transform = Transform3D(0.059165, -5.02915e-08, -0.0638201, -6.94391e-08, 0.0870255, 5.06774e-08, 0.0638197, 1.61216e-08, 0.0591642, 0.0102633, 1.92332, -0.469498)

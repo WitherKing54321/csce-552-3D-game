@@ -13,12 +13,13 @@ const DIALOG_LINES: Array[String] = [
 
 @onready var area: Area3D = $Area3D
 @onready var prompt: Label3D = $Label3D
-
+@onready var anim: AnimationPlayer = $scaredgaurd/AnimationPlayer
 var _player_in_range: Node3D = null
 var _has_talked: bool = false
 
 
 func _ready() -> void:
+	anim.play("ArmatureAction")
 	prompt.text = prompt_text
 	prompt.visible = false
 	area.body_entered.connect(_on_body_entered)

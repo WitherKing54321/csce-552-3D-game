@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=44 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://Characters/player.gd" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://dnii4bq1sm4c4" path="res://final_complete_build.tscn" id="2_hhcpw"]
@@ -17,12 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://case0ouywui0f" path="res://helmetwip.glb" id="9_c2ibq"]
 [ext_resource type="Script" uid="uid://dvyhamwioef37" path="res://UI/dialog_ui.gd" id="11_20pc6"]
 [ext_resource type="Script" uid="uid://b3fijel3wd3eo" path="res://Characters/chase_trigger.gd" id="11_c2ibq"]
-[ext_resource type="PackedScene" uid="uid://b8y5dhhe4nv0g" path="res://Characters/Monster/GAUrdleader.glb" id="11_devvj"]
+[ext_resource type="PackedScene" uid="uid://bq81muh5x6coo" path="res://Characters/Monster/ga_urdleader.tscn" id="11_mxvw5"]
 [ext_resource type="Script" uid="uid://cwgxey06nj70y" path="res://Characters/WizardTaunt.gd" id="13_3b0ty"]
 [ext_resource type="Script" uid="uid://wr6lipgv8ubd" path="res://UI/pause_menu.gd" id="13_fpfj3"]
 [ext_resource type="Script" uid="uid://bu8771tp8ndoa" path="res://WizardTauntTrigger.gd" id="14_bg4s2"]
 [ext_resource type="Script" uid="uid://6jyaognxeiv2" path="res://Scripts/StartSpawn.gd" id="15_j4qnp"]
 [ext_resource type="Script" uid="uid://bskpnejdds4g8" path="res://checkpoint.gd" id="16_fpfj3"]
+[ext_resource type="PackedScene" uid="uid://b33w4iikpjasj" path="res://helmetwip.tscn" id="20_hhcpw"]
+[ext_resource type="Script" uid="uid://dctpsr01inr41" path="res://helmetwip.gd" id="21_mxvw5"]
 
 [sub_resource type="Environment" id="Environment_fos0i"]
 background_mode = 1
@@ -117,7 +119,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.00985241, 18.0695, 42.3441)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody3D" parent="Characters" groups=["player", "player_global", "sucess_menu"]]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.44114, 19.6384, 13.0682)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.40793, 20.9611, 14.4112)
 script = ExtResource("1_glv2v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Characters/Player"]
@@ -221,10 +223,9 @@ loop = false
 
 [node name="GuardRoot" type="Node3D" parent="Characters/GuideNPC/GuideController/Path3D/PathFollow3D"]
 
-[node name="GAUrdleader" parent="Characters/GuideNPC/GuideController/Path3D/PathFollow3D/GuardRoot" instance=ExtResource("11_devvj")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+[node name="GAUrdleader" parent="Characters/GuideNPC/GuideController/Path3D/PathFollow3D/GuardRoot" instance=ExtResource("11_mxvw5")]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Characters/GuideNPC/GuideController/Path3D/PathFollow3D/GuardRoot"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Characters/GuideNPC/GuideController/Path3D/PathFollow3D/GuardRoot/GAUrdleader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.91368, -2.2345)
 light_color = Color(0.850131, 0.513682, 7.70092e-07, 1)
 light_energy = 15.0
@@ -337,8 +338,9 @@ rotation_mode = 4
 
 [node name="MonsterRoot2" type="Node3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow"]
 
-[node name="helmetwip" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2" instance=ExtResource("9_c2ibq")]
-transform = Transform3D(-2.5, 0, -2.18557e-07, 0, 2.5, 0, 2.18557e-07, 0, -2.5, 0, -1.55339, 0)
+[node name="helmetwip" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2" instance=ExtResource("20_hhcpw")]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0, -1.4088, 0)
+script = ExtResource("21_mxvw5")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2/helmetwip"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 6, 2)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq81muh5x6coo"]
+
+[ext_resource type="PackedScene" uid="uid://b8y5dhhe4nv0g" path="res://Characters/Monster/GAUrdleader.glb" id="1_o1toh"]
+
+[node name="GAUrdleader" instance=ExtResource("1_o1toh")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(-0.0360081, 0.000356022, 0.00987914, 0.999303)
+bones/2/rotation = Quaternion(-0.00544381, -0.000307954, -0.0404815, 0.999165)
+bones/3/rotation = Quaternion(0.000370329, -0.0171343, 0.0430935, 0.998924)
+bones/5/rotation = Quaternion(-0.45434, -0.253127, 0.41569, 0.746126)
+bones/6/rotation = Quaternion(6.82293e-08, 1.26701e-07, 0.756389, 0.654122)
+bones/7/rotation = Quaternion(0.405625, 0.00123483, 0.00278445, 0.914035)
+bones/9/rotation = Quaternion(-0.311222, 0.168428, -0.445153, 0.822564)
+bones/10/rotation = Quaternion(-0.222136, -0.136445, -0.775216, 0.575394)
+bones/12/rotation = Quaternion(-0.00012421, -0.0331172, 0.999443, -0.00400328)
+bones/13/rotation = Quaternion(0.0661465, -0.00013937, -0.00828072, 0.997776)
+bones/15/rotation = Quaternion(2.97756e-06, -0.00139335, 0.999991, -0.0040052)
+bones/16/rotation = Quaternion(0.0212117, -0.000152008, -0.00828915, 0.999741)
+
+[node name="Sphere_010" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.46974, 0)

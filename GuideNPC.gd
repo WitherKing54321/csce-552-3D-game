@@ -31,9 +31,10 @@ const END_DIALOG_LINES: Array[String] = [
 var _has_talk_dialog_played: bool = false
 var _has_walk_dialog_played: bool = false
 var _has_end_dialog_played: bool = false
-
+@onready var anim: AnimationPlayer = $"GuideController/Path3D/PathFollow3D/GuardRoot/GAUrdleader/AnimationPlayer" as AnimationPlayer
 
 func _ready() -> void:
+	anim.play("idle")
 	# Connect trigger for first dialog
 	if talk_trigger:
 		talk_trigger.body_entered.connect(_on_talk_trigger_body_entered)
@@ -84,7 +85,7 @@ func play_talk_dialog() -> void:
 func play_walk_dialog() -> void:
 	if _has_walk_dialog_played:
 		return
-
+	anim.play("walk")
 	var dialog_ui := get_tree().get_first_node_in_group("dialog_ui")
 	if dialog_ui == null:
 		push_warning("GuideNPC: No node in group 'dialog_ui' found for WALK dialog.")
@@ -104,6 +105,7 @@ func play_walk_dialog() -> void:
 # ------- THIRD DIALOG: bottom of staircase (trigger) -------
 
 func _on_stair_trigger_body_entered(body: Node) -> void:
+	anim.play("idle")
 	if _has_end_dialog_played:
 		return
 	if not body.is_in_group(player_group):

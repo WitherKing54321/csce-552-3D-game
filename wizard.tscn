@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://vpicbo06l3lj"]
+
+[ext_resource type="PackedScene" uid="uid://d3sxwuv4j0tku" path="res://Characters/WIZARD.glb" id="1_0isxx"]
+
+[node name="WIZARD" instance=ExtResource("1_0isxx")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/3/rotation = Quaternion(-0.0931063, -7.72732e-06, 5.93907e-05, 0.995656)
+bones/4/rotation = Quaternion(-0.0703721, 0.0885499, 0.914022, 0.389578)
+bones/5/rotation = Quaternion(-0.73504, -0.00626485, 0.00546017, 0.677973)
+bones/6/rotation = Quaternion(0.00373951, -0.440894, 0.0146297, 0.897432)
+bones/7/rotation = Quaternion(0.952729, 0.30252, 0.0157535, 0.0232723)
+bones/8/rotation = Quaternion(0.525344, -0.473514, -0.532925, 0.464531)
+bones/9/rotation = Quaternion(-0.0131842, 0.00659343, 0.419569, 0.907604)
+bones/10/rotation = Quaternion(-0.000588678, -0.00250717, 0.999989, -0.00394966)
+bones/13/rotation = Quaternion(-0.000588559, -0.00250717, 0.999989, -0.00394966)

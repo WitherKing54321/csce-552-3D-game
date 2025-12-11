@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://yig5vrie7adh"]
+
+[ext_resource type="PackedScene" uid="uid://qm4ftgj2s36h" path="res://Characters/shopkeep4.glb" id="1_vs3b7"]
+
+[node name="shopkeep4" instance=ExtResource("1_vs3b7")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(-0.0100203, 1.19203e-07, -1.19451e-09, 0.99995)
+bones/2/rotation = Quaternion(0.000117384, -9.30169e-05, -0.000732278, 1)
+bones/3/rotation = Quaternion(4.65661e-10, -5.91882e-12, -2.89901e-11, 1)
+bones/5/rotation = Quaternion(0.157451, -0.132943, -0.438549, 0.874763)
+bones/6/rotation = Quaternion(0.155157, -0.208694, -0.961693, 0.0867154)
+bones/7/rotation = Quaternion(-0.269797, 0.264684, 0.336755, 0.862408)
+bones/9/rotation = Quaternion(-0.0269592, 0.0568385, 0.180728, 0.981519)
+bones/10/rotation = Quaternion(-0.0254119, -0.0562758, 0.674316, 0.735857)
+bones/11/rotation = Quaternion(0.0267875, 0.0487137, -0.553991, 0.830664)

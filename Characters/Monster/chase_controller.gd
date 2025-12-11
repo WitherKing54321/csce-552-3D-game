@@ -13,7 +13,9 @@ const CHASE_LOOP: AudioStream = preload("res://Sounds/MonsterWalk.wav")
 @export var chase_volume_db: float = 20       # volume of the chase loop
 
 var _active: bool = false
-var _chase_player: AudioStreamPlayer3D = null  # runtime audio player
+var _chase_player: AudioStreamPlayer3D = null  # runtimeS audio playe
+@onready var anim = monster_root.get_node_or_null("helmetwip/AnimationPlayer") as AnimationPlayer
+var chase1 = true
 
 
 func _ready() -> void:
@@ -49,6 +51,8 @@ func _ready() -> void:
 
 
 func start_chase() -> void:
+	if chase1 == true:
+		anim.play("Action")
 	if path_follow == null:
 		push_error("ChaseController(" + name + "): path_follow is NOT set, cannot start chase")
 		return
@@ -84,6 +88,7 @@ func start_chase() -> void:
 func stop_chase() -> void:
 	# Manual stop helper (optional, but useful)
 	_active = false
+	chase1 = false
 
 	if death_area:
 		if death_area.has_method("set_active"):
@@ -129,6 +134,7 @@ func _process(delta: float) -> void:
 		if monster_root:
 			monster_root.visible = false
 			monster_root.process_mode = Node.PROCESS_MODE_DISABLED
+			queue_free()
 
 		# Stop chase audio when done
 		if _chase_player and _chase_player.playing:
