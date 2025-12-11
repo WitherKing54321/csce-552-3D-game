@@ -10,12 +10,19 @@ const CHASE_LOOP: AudioStream = preload("res://Sounds/MonsterWalk.wav")
 @export var death_area: Area3D                 # the Area3D that kills the player
 @export var speed: float = 8.0                 # movement speed along the path
 @export var auto_reset: bool = false           # if true, loop back to start at end
-@export var chase_volume_db: float = 20       # volume of the chase loop
+@export var chase_volume_db: float = 12        # volume of the chase loop
 
 var _active: bool = false
-var _chase_player: AudioStreamPlayer3D = null  # runtimeS audio playe
-@onready var anim = monster_root.get_node_or_null("helmetwip/AnimationPlayer") as AnimationPlayer
-var chase1 = true
+var _chase_player: AudioStreamPlayer3D = null  # runtime audio player
+
+@onready var helmet_node: Node3D = (
+	monster_root.get_node_or_null("helmetwip") as Node3D
+)
+@onready var anim: AnimationPlayer = (
+	monster_root.get_node_or_null("helmetwip/AnimationPlayer") as AnimationPlayer
+)
+
+var chase1: bool = true
 
 
 func _ready() -> void:
@@ -29,7 +36,19 @@ func _ready() -> void:
 	_chase_player.stream = CHASE_LOOP
 	_chase_player.autoplay = false
 	_chase_player.volume_db = chase_volume_db
-	add_child(_chase_player)
+
+	# IMPORTANT: parent audio to helmetwip so it moves with the monster
+	if helmet_node:
+		helmet_node.add_child(_chase_player)
+		_chase_player.transform = Transform3D.IDENTITY
+		print("  -> Chase audio parented to helmetwip")
+	elif monster_root:
+		monster_root.add_child(_chase_player)
+		_chase_player.transform = Transform3D.IDENTITY
+		push_warning("ChaseController(" + name + "): helmetwip not found, audio attached to monster_root instead")
+	else:
+		add_child(_chase_player)
+		push_error("ChaseController(" + name + "): monster_root not set, audio stuck on controller node")
 
 	# Hide monster at start
 	if monster_root:
@@ -51,8 +70,9 @@ func _ready() -> void:
 
 
 func start_chase() -> void:
-	if chase1 == true:
+	if chase1 == true and anim:
 		anim.play("Action")
+
 	if path_follow == null:
 		push_error("ChaseController(" + name + "): path_follow is NOT set, cannot start chase")
 		return

@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dnii4bq1sm4c4"]
+[gd_scene load_steps=28 format=3 uid="uid://dnii4bq1sm4c4"]
 
 [ext_resource type="PackedScene" uid="uid://c7phid4px7k7b" path="res://Objects/Complete_Build (3).glb" id="1_o0hf8"]
 [ext_resource type="PackedScene" uid="uid://rbi56mb4ugp1" path="res://Objects/torch.tscn" id="2_ytrt2"]
 [ext_resource type="PackedScene" uid="uid://cwp61bo5ftxp1" path="res://Objects/flash_pane.tscn" id="3_mrvd7"]
-[ext_resource type="Script" uid="uid://b3otf3beh8f0d" path="res://Objects/flash_pane.gd" id="4_iqwoj"]
 [ext_resource type="PackedScene" uid="uid://b0y2bjujequdl" path="res://Objects/success_cutscene.tscn" id="5_mrvd7"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ytrt2"]
@@ -87,35 +86,33 @@ shape = SubResource("ConcavePolygonShape3D_ytrt2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_017/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mrvd7")
 
-[node name="Torch" type="Node3D" parent="Torch_Empty" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_001" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_001" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_002" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_002" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_003" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_003" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_004" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_004" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_005" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_005" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_006" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_006" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_007" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_007" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_008" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_008" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_009" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_009" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Torch_Empty_010" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Torch_Empty_010" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="FlashPaneRoot" type="Node3D" parent="Window_Empty" index="0" instance=ExtResource("3_mrvd7")]
+[node name="FlashPaneRoot" parent="Window_Empty" index="0" instance=ExtResource("3_mrvd7")]
 transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1.2, -0.0128174, -0.187195, 0)
-script = ExtResource("4_iqwoj")
 
-[node name="FlashPaneRoot" type="Node3D" parent="Window_Empty_001" index="0" instance=ExtResource("3_mrvd7")]
+[node name="FlashPaneRoot" parent="Window_Empty_001" index="0" instance=ExtResource("3_mrvd7")]
 transform = Transform3D(1.5, 0, 0, 0, 1.4, 0, 0, 0, 1.2, -0.0386963, 0, 0)
-script = ExtResource("4_iqwoj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_035" index="0"]
 
@@ -127,47 +124,47 @@ shape = SubResource("ConcavePolygonShape3D_iqwoj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_045/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_oopcl")
 
-[node name="Torch" type="Node3D" parent="Empty_003" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_003" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_009" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_009" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_010" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_010" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_011" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_011" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_012" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_012" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_013" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_013" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_014" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_014" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_015" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_015" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_016" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_016" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_017" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_017" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_018" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_018" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_019" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_019" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_020" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_020" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_021" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_021" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_022" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_022" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_023" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_023" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_024" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_024" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_025" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_025" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_026" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_026" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_027" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_027" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_028" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_028" index="0" instance=ExtResource("2_ytrt2")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_064" index="0"]
 
@@ -179,45 +176,41 @@ shape = SubResource("ConcavePolygonShape3D_la7os")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_065/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mlpqq")
 
-[node name="Torch" type="Node3D" parent="Empty_004" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_004" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_005" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_005" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_006" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_006" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_007" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_007" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_008" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_008" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_029" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_029" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_030" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_030" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_031" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_031" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_032" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_032" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_033" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_033" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_034" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_034" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="FlashPaneRoot" type="Node3D" parent="Window_Empty_002" index="0" instance=ExtResource("3_mrvd7")]
+[node name="FlashPaneRoot" parent="Window_Empty_002" index="0" instance=ExtResource("3_mrvd7")]
 transform = Transform3D(1, 0, 0, 0, 0.68, 0, 0, 0, 0.75, 0, -0.0723877, 0)
-script = ExtResource("4_iqwoj")
 
-[node name="FlashPaneRoot" type="Node3D" parent="Window_Empty_003" index="0" instance=ExtResource("3_mrvd7")]
+[node name="FlashPaneRoot" parent="Window_Empty_003" index="0" instance=ExtResource("3_mrvd7")]
 transform = Transform3D(1, 0, 0, 0, 0.68, 0, 0, 0, 0.71, 0, -0.0955811, 0)
-script = ExtResource("4_iqwoj")
 
-[node name="FlashPaneRoot" type="Node3D" parent="Window_Empty_004" index="0" instance=ExtResource("3_mrvd7")]
+[node name="FlashPaneRoot" parent="Window_Empty_004" index="0" instance=ExtResource("3_mrvd7")]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 0.68, 0, 1.42109e-14, 0, 0.71, 0, -0.0620117, 0)
-script = ExtResource("4_iqwoj")
 
-[node name="FlashPaneRoot" type="Node3D" parent="Window_Empty_005" index="0" instance=ExtResource("3_mrvd7")]
+[node name="FlashPaneRoot" parent="Window_Empty_005" index="0" instance=ExtResource("3_mrvd7")]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 0.68, 0, 1.42109e-14, 0, 0.71, 0, -0.0791016, 0)
-script = ExtResource("4_iqwoj")
 
-[node name="Torch" type="Node3D" parent="Empty_035" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_035" index="0" instance=ExtResource("2_ytrt2")]
 
 [node name="stair_collision_001" parent="." index="56"]
 visible = false
@@ -262,18 +255,17 @@ shape = SubResource("ConcavePolygonShape3D_jxfyw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stairs_020/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ejyoa")
 
-[node name="FlashPaneRoot" type="Node3D" parent="Window_Empty_006" index="0" instance=ExtResource("3_mrvd7")]
+[node name="FlashPaneRoot" parent="Window_Empty_006" index="0" instance=ExtResource("3_mrvd7")]
 transform = Transform3D(1, 0, 0, 0, 0.68, 0, 0, 0, 0.71, 0, -0.0710144, 0)
-script = ExtResource("4_iqwoj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tutorial_floor" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial_floor/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_575k3")
 
-[node name="Torch" type="Node3D" parent="Empty" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_001" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_001" index="0" instance=ExtResource("2_ytrt2")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="bar_broken" index="0"]
 
@@ -318,65 +310,65 @@ shape = SubResource("ConcavePolygonShape3D_png4w")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall_straight_001/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_hciug")
 
-[node name="Torch" type="Node3D" parent="Empty_002" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_002" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_036" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_036" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_037" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_037" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_038" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_038" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_039" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_039" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_040" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_040" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_041" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_041" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_042" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_042" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_043" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_043" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_044" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_044" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_045" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_045" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_046" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_046" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_047" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_047" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_048" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_048" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_049" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_049" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_050" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_050" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_051" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_051" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_052" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_052" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_053" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_053" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_054" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_054" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_055" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_055" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_056" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_056" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_057" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_057" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_058" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_058" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_059" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_059" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_060" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_060" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_061" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_061" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_062" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_062" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_063" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_063" index="0" instance=ExtResource("2_ytrt2")]
 
-[node name="Torch" type="Node3D" parent="Empty_064" index="0" instance=ExtResource("2_ytrt2")]
+[node name="Torch" parent="Empty_064" index="0" instance=ExtResource("2_ytrt2")]
 
 [node name="Success_Cutscene" parent="." index="107" instance=ExtResource("5_mrvd7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.9816, -39.449, 22.176)

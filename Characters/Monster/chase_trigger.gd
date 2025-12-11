@@ -20,6 +20,7 @@ func _ready() -> void:
 
 	# Create a non positional audio player for chase music
 	_music_player = AudioStreamPlayer.new()
+	_music_player.volume_db = -10
 	_music_player.autoplay = false
 	add_child(_music_player)
 

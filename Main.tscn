@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://day2xcnccv5hs"]
+[gd_scene load_steps=44 format=3 uid="uid://day2xcnccv5hs"]
 
 [ext_resource type="Script" uid="uid://buqgg8dfnullo" path="res://Characters/player.gd" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://dnii4bq1sm4c4" path="res://final_complete_build.tscn" id="2_hhcpw"]
@@ -25,7 +25,6 @@
 [ext_resource type="Script" uid="uid://6jyaognxeiv2" path="res://Scripts/StartSpawn.gd" id="15_j4qnp"]
 [ext_resource type="Script" uid="uid://bskpnejdds4g8" path="res://checkpoint.gd" id="16_fpfj3"]
 [ext_resource type="PackedScene" uid="uid://b33w4iikpjasj" path="res://helmetwip.tscn" id="20_hhcpw"]
-[ext_resource type="Script" uid="uid://dctpsr01inr41" path="res://helmetwip.gd" id="21_mxvw5"]
 
 [sub_resource type="Environment" id="Environment_fos0i"]
 background_mode = 1
@@ -37,8 +36,8 @@ radius = 0.8
 height = 2.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uu6xs"]
-height = 4.0
-radius = 3.83545
+height = 8.61865
+radius = 7.64404
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kjvhd"]
 height = 19.7999
@@ -69,13 +68,13 @@ size = Vector3(50.924, 30.2782, 54.3808)
 
 [sub_resource type="Curve3D" id="Curve3D_3dxm6"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 40, 0, 10, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, -80),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 45, 0, 15, 0, 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, 0, 0, 0, 0, 0, 0, 0, -138, 0, -80),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lgr22"]
-size = Vector3(32.7984, 31.8876, 8.04089)
+size = Vector3(32.7984, 31.8876, 20.5386)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c2ibq"]
 size = Vector3(31, 14, 4)
@@ -105,6 +104,7 @@ size = Vector3(15, 11, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, -0.612372, 0.612373, 30.6436, 14.8404, 0)
+visible = false
 light_energy = 30.0
 light_indirect_energy = 10.0
 shadow_enabled = true
@@ -120,7 +120,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.00985241, 18.0695, 42.3441)
 [node name="Characters" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody3D" parent="Characters" groups=["player", "player_global", "sucess_menu"]]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.40793, 20.9611, 14.4112)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.02767, 19.5919, 13.267)
 script = ExtResource("1_glv2v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Characters/Player"]
@@ -150,25 +150,39 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 script = ExtResource("2_uu6xs")
 
 [node name="shopkeep4" parent="Characters/Shopkeep" instance=ExtResource("8_c6i3y")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="Characters/Shopkeep"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46223, 0, 0.799347)
 script = ExtResource("5_5vvyt")
 dialog_lines = Array[String]([])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Shopkeep/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30933, 0)
 shape = SubResource("CylinderShape3D_uu6xs")
 
 [node name="Label3D" type="Label3D" parent="Characters/Shopkeep"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08566, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Characters/Shopkeep"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.57792, 0, 32.3174)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8266, 0, 68.912)
 stream = ExtResource("6_sqvbp")
+attenuation_model = 3
 volume_db = 7.0
 unit_size = 3.2
 autoplay = true
-max_distance = 300.0
+max_distance = 100.0
+panning_strength = 0.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Characters/Shopkeep"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.3081, 0, 70.6931)
+stream = ExtResource("6_sqvbp")
+attenuation_model = 3
+volume_db = 7.0
+unit_size = 3.2
+autoplay = true
+max_distance = 50.0
+panning_strength = 0.0
 
 [node name="Shopkeep2" type="Node3D" parent="Characters" groups=["player"]]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -265.052, -4.0855, -222.104)
@@ -189,13 +203,24 @@ shape = SubResource("CylinderShape3D_uu6xs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.31008, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Characters/Shopkeep2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1856, 0, 36.9638)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.8189, 10.8131, 25.5354)
 stream = ExtResource("6_sqvbp")
+attenuation_model = 3
 volume_db = 7.0
 unit_size = 5.0
 autoplay = true
-max_distance = 400.0
-panning_strength = 3.0
+max_distance = 50.0
+panning_strength = 0.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Characters/Shopkeep2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1139, -46.8007, 95.185)
+stream = ExtResource("6_sqvbp")
+attenuation_model = 3
+volume_db = 7.0
+unit_size = 5.0
+autoplay = true
+max_distance = 80.0
+panning_strength = 0.0
 
 [node name="GuideNPC" type="Node3D" parent="Characters" node_paths=PackedStringArray("talk_trigger", "stair_trigger")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -239.235, -4.25044, -222.299)
@@ -299,7 +324,7 @@ speed = 11.7
 curve = SubResource("Curve3D_3dxm6")
 
 [node name="MonsterPathFollow" type="PathFollow3D" parent="Characters/MonsterChase1/ChaseController/MonsterPath"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 15)
 rotation_mode = 4
 loop = false
 
@@ -321,7 +346,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("9_03owx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/MonsterChase1/ChaseController/MonsterPath/MonsterPathFollow/MonsterRoot/DeathArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.861923, 6.83563, 0.0282593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.861923, 6.83563, 6.27709)
 shape = SubResource("BoxShape3D_lgr22")
 
 [node name="MonsterChase2" type="Node" parent="Characters"]
@@ -336,6 +361,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 6.5, -11.5)
 shape = SubResource("BoxShape3D_c2ibq")
 
 [node name="ChaseController2" type="Node3D" parent="Characters/MonsterChase2" node_paths=PackedStringArray("path_follow", "monster_root", "death_area") groups=["game_over_menu", "player", "player_global"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155.261, -62.6846, -50.9757)
 script = ExtResource("7_trn2v")
 path_follow = NodePath("MonsterPath/MonsterPathFollow")
 monster_root = NodePath("MonsterPath/MonsterPathFollow/MonsterRoot2")
@@ -343,7 +369,6 @@ death_area = NodePath("MonsterPath/MonsterPathFollow/MonsterRoot2/DeathArea")
 speed = 12.5
 
 [node name="MonsterPath" type="Path3D" parent="Characters/MonsterChase2/ChaseController2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -156.696, -62.5528, -52.5736)
 curve = SubResource("Curve3D_c6i3y")
 
 [node name="MonsterPathFollow" type="PathFollow3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath"]
@@ -354,7 +379,6 @@ rotation_mode = 4
 
 [node name="helmetwip" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2" instance=ExtResource("20_hhcpw")]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0, -1.4088, 0)
-script = ExtResource("21_mxvw5")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Characters/MonsterChase2/ChaseController2/MonsterPath/MonsterPathFollow/MonsterRoot2/helmetwip"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 6, 2)

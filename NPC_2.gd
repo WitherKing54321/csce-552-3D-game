@@ -20,6 +20,10 @@ const DIALOG_AUDIO: Array[AudioStream] = [
 @export var player_group := "player"
 @export var prompt_text := "Press E to talk"
 
+# NEW: volume controls
+@export var default_volume_db: float = 0.0   # volume for all normal lines
+@export var yelp_volume_db: float = -12.0     # volume just for "*YELP*" (line 0)
+
 @onready var area: Area3D = $Area3D
 @onready var prompt: Label3D = $Label3D
 @onready var anim: AnimationPlayer = $scaredgaurd/AnimationPlayer
@@ -39,6 +43,7 @@ func _ready() -> void:
 
 	# Create 3D audio player in code
 	_audio_player = AudioStreamPlayer3D.new()
+	_audio_player.volume_db = default_volume_db
 	add_child(_audio_player)
 
 
@@ -97,6 +102,12 @@ func play_line_audio(line_index: int) -> void:
 
 	if _audio_player.playing:
 		_audio_player.stop()
+
+	# Set volume based on which line is playing
+	if line_index == 0:
+		_audio_player.volume_db = yelp_volume_db
+	else:
+		_audio_player.volume_db = default_volume_db
 
 	_audio_player.stream = DIALOG_AUDIO[line_index]
 	_audio_player.play()
