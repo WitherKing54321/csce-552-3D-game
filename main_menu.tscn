@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjom7dn226102"]
+[gd_scene load_steps=7 format=3 uid="uid://cjom7dn226102"]
 
 [ext_resource type="Script" uid="uid://p651bwpeevmk" path="res://MainMenu.gd" id="1_06t4h"]
 [ext_resource type="PackedScene" uid="uid://8qou30li0pkk" path="res://intro_cutscene.tscn" id="2_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://84tj6f1ca3rf" path="res://ControlsMenu.tscn" id="3_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://ct0yv6323unm0" path="res://AboutMenu.tscn" id="4_jix8l"]
+[ext_resource type="AudioStream" uid="uid://bsfiqup16usbm" path="res://Sounds/3D-Game_MainMenuMusic.wav" id="5_glbon"]
 
 [sub_resource type="FontVariation" id="FontVariation_7vrkn"]
 
@@ -85,3 +86,8 @@ text = "About"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_glbon")
+volume_db = -5.0
+autoplay = true

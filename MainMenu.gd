@@ -2,11 +2,22 @@ extends CanvasLayer
 
 @export var game_scene: PackedScene      # drag your MAIN / intro scene here
 @export var controls_scene: PackedScene  # drag your ControlsMenu.tscn here
-@export var about_scene: PackedScene     # drag your AboutMenu.tscn here   <--- NEW
+@export var about_scene: PackedScene     # drag your AboutMenu.tscn here   # NEW
+
+# ===== SCROLL AUDIO (preload in code) =====
+const SCROLL_SOUND: AudioStream = preload("res://Sounds/MenuScroll.wav")  # change path
+
+var _scroll_player: AudioStreamPlayer = null
+var _initial_focus_consumed: bool = false
+
 
 func _ready() -> void:
 	# Make mouse visible for menu
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	# Create audio player in code
+	_scroll_player = AudioStreamPlayer.new()
+	add_child(_scroll_player)
 
 	# Connect buttons
 	$Control/VBoxContainer/PlayButton.pressed.connect(_on_play_pressed)
@@ -21,9 +32,39 @@ func _ready() -> void:
 
 	$Control/VBoxContainer/QuitButton.pressed.connect(_on_quit_pressed)
 
+	# Connect focus signals for scroll sound
+	var buttons: Array = []
+	buttons.append($Control/VBoxContainer/PlayButton)
+	buttons.append($Control/VBoxContainer/ControlsButton)
+
+	if $Control/VBoxContainer.has_node("AboutButton"):
+		buttons.append($Control/VBoxContainer/AboutButton)
+
+	if $Control/VBoxContainer.has_node("OptionsButton"):
+		buttons.append($Control/VBoxContainer/OptionsButton)
+
+	buttons.append($Control/VBoxContainer/QuitButton)
+
+	for b in buttons:
+		b.focus_entered.connect(_on_button_focus_entered)
+
+
+func _on_button_focus_entered() -> void:
+	# Do not play sound for the very first highlight when menu opens
+	if not _initial_focus_consumed:
+		_initial_focus_consumed = true
+		return
+	_play_scroll_sound()
+
+
+func _play_scroll_sound() -> void:
+	if _scroll_player and SCROLL_SOUND:
+		_scroll_player.stream = SCROLL_SOUND
+		_scroll_player.play()
+
 
 func _on_play_pressed() -> void:
-	# NEW: starting a new game should reset checkpoints
+	# starting a new game should reset checkpoints
 	CheckpointManager.clear_checkpoint()
 
 	if game_scene:

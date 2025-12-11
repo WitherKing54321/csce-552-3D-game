@@ -3,3 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://c30ycudpmblgy" path="res://Characters/scaredgaurd.glb" id="1_isqf5"]
 
 [node name="scaredgaurd" instance=ExtResource("1_isqf5")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(0.0173602, -2.58045e-05, 0.000117171, 0.999849)
+bones/1/rotation = Quaternion(-0.0933897, -0.000735097, 0.0124541, 0.995552)
+bones/2/rotation = Quaternion(0.138527, -0.000843665, -0.0217627, 0.990119)
+bones/3/rotation = Quaternion(-0.229724, -0.000748979, 0.00934483, 0.973211)
+bones/4/rotation = Quaternion(0.118114, 0.0521588, 0.904573, 0.406295)
+bones/5/rotation = Quaternion(-0.910712, 0.145993, 0.0906023, 0.375607)
+bones/6/rotation = Quaternion(-0.240402, 0.209793, -0.0715877, 0.945023)
+bones/7/rotation = Quaternion(0.92121, 0.131425, -0.362729, 0.0502642)
+bones/8/rotation = Quaternion(0.316172, -0.552859, -0.467576, 0.612989)
+bones/9/rotation = Quaternion(-0.136075, -0.87653, -0.110574, 0.448276)
+bones/10/rotation = Quaternion(-4.09525e-05, 0.00372001, 0.999833, -0.017911)
+bones/13/rotation = Quaternion(0.00086572, 0.0261068, 0.999605, -0.0104165)

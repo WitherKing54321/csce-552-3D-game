@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://hdys81d4jtmp"]
+[gd_scene load_steps=3 format=3 uid="uid://hdys81d4jtmp"]
 
 [ext_resource type="Script" uid="uid://cjciua3jfs6pn" path="res://Objects/success_menu.gd" id="1_iav1h"]
+[ext_resource type="AudioStream" uid="uid://bdqwejl80ckhy" path="res://Sounds/3D-Game_PianoMusic.wav" id="2_iav1h"]
 
 [node name="SuccessMenuNode" type="Control"]
 layout_mode = 3
@@ -49,3 +50,7 @@ text = "Main Menu"
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SuccessMenu"]
+stream = ExtResource("2_iav1h")
+autoplay = true

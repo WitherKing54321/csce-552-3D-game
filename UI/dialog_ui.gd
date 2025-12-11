@@ -13,6 +13,9 @@ var _active: bool = false
 var _auto_mode: bool = false
 var _speaker_npc: Node = null   # NPC that owns audio for these lines (if any)
 
+var _durations: Array[float] = []      # optional per line durations
+var _auto_default_duration: float = 0  # fallback when not using per line durations
+
 
 func _ready() -> void:
 	add_to_group("dialog_ui")      # so everyone can find this node
@@ -23,7 +26,7 @@ func _ready() -> void:
 
 # ========== PUBLIC API ==========
 
-# Existing manual dialog – NPCs & Guide can keep using this
+# Manual dialog, player presses button to advance
 func start_dialog(lines: Array[String], speaker_npc: Node = null) -> void:
 	if lines.is_empty():
 		return
@@ -33,6 +36,8 @@ func start_dialog(lines: Array[String], speaker_npc: Node = null) -> void:
 	_active = true
 	_auto_mode = false
 	_speaker_npc = speaker_npc
+	_durations.clear()
+	_auto_default_duration = 0.0
 
 	_show_current_line()
 
@@ -41,36 +46,55 @@ func start_dialog(lines: Array[String], speaker_npc: Node = null) -> void:
 	set_process_unhandled_input(true)
 
 
-# NEW: auto-advance dialog – used by the wizard
-func start_auto_dialog(lines: Array[String], seconds_per_line: float = -1.0, speaker_npc: Node = null) -> void:
+# Auto advance dialog
+# durations_or_seconds can be:
+#  - Array[float]  -> per line durations
+#  - float / int   -> same duration for all lines
+#  - omitted or <= 0 -> uses auto_seconds_per_line
+func start_auto_dialog(lines: Array[String], durations_or_seconds = -1.0, speaker_npc: Node = null) -> void:
 	if lines.is_empty():
 		return
-
-	var duration := seconds_per_line
-	if duration <= 0.0:
-		duration = auto_seconds_per_line
 
 	_lines = lines.duplicate()
 	_index = 0
 	_active = true
 	_auto_mode = true
 	_speaker_npc = speaker_npc
+	_durations.clear()
+
+	if durations_or_seconds is Array:
+		# Per line durations
+		for v in durations_or_seconds:
+			_durations.append(float(v))
+		# Resize or pad so it matches number of lines
+		if _durations.size() < _lines.size():
+			var missing := _lines.size() - _durations.size()
+			for i in range(missing):
+				_durations.append(auto_seconds_per_line)
+		elif _durations.size() > _lines.size():
+			_durations.resize(_lines.size())
+		_auto_default_duration = auto_seconds_per_line
+	else:
+		# Single duration for all lines
+		var dur: float = float(durations_or_seconds)
+		if dur <= 0.0:
+			dur = auto_seconds_per_line
+		_auto_default_duration = dur
 
 	_show_current_line()
 
 	dialog_panel.show()
 	show()
-	set_process_unhandled_input(false)  # no input while in auto mode
+	set_process_unhandled_input(false)  # no input needed in auto mode
 
-	# Start the coroutine; we don't await it from here
-	call_deferred("_run_auto_dialog", duration)
+	# Start the coroutine after draw
+	call_deferred("_run_auto_dialog")
 
 
 func is_active() -> bool:
 	return _active
 
 
-# Optional convenience: if something needs to instantly close the dialog
 func force_close() -> void:
 	if _active:
 		_finish_dialog()
@@ -82,12 +106,15 @@ func _show_current_line() -> void:
 	if _index >= 0 and _index < _lines.size():
 		dialog_label.text = _lines[_index]
 
-		# Optional audio hook: per-line audio from the speaking NPC
 		if _speaker_npc and _speaker_npc.has_method("play_line_audio"):
 			_speaker_npc.play_line_audio(_index)
 
 
 func _next_line() -> void:
+	# Stop current line audio before moving on
+	if _speaker_npc and _speaker_npc.has_method("stop_line_audio"):
+		_speaker_npc.stop_line_audio()
+
 	_index += 1
 	if _index >= _lines.size():
 		_finish_dialog()
@@ -105,33 +132,43 @@ func _finish_dialog() -> void:
 	hide()
 	set_process_unhandled_input(false)
 
-	# Stop any playing line audio
 	if _speaker_npc and _speaker_npc.has_method("stop_line_audio"):
 		_speaker_npc.stop_line_audio()
 	_speaker_npc = null
+
+	_durations.clear()
+	_auto_default_duration = 0.0
 
 	emit_signal("dialog_finished")
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not _active:
+	if not _active or _auto_mode:
 		return
 
-	# Use your custom action mapped to E
 	if event.is_action_pressed("dialog_next"):
 		_next_line()
 	elif event.is_action_pressed("ui_cancel"):
 		_finish_dialog()
 
 
+func _run_auto_dialog() -> void:
+	_auto_dialog_coroutine()
 
-func _run_auto_dialog(seconds_per_line: float) -> void:
-	_auto_dialog_coroutine(seconds_per_line)
 
-
-func _auto_dialog_coroutine(seconds_per_line: float) -> void:
+func _auto_dialog_coroutine() -> void:
 	while _active and _index >= 0 and _index < _lines.size():
-		await get_tree().create_timer(seconds_per_line).timeout
+		var wait_time: float
+
+		if _durations.size() > 0 and _index < _durations.size():
+			wait_time = _durations[_index]
+		elif _auto_default_duration > 0.0:
+			wait_time = _auto_default_duration
+		else:
+			wait_time = auto_seconds_per_line
+
+		await get_tree().create_timer(wait_time).timeout
 		if not _active:
 			break
+
 		_next_line()
